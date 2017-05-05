@@ -8,25 +8,35 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * @author HCD-Fresher204
+ * DataAccess.java
  *
+ * Version 1.0
+ *
+ * Date: 03-05-2017
+ *
+ * Copyright
+ *
+ * Modification Logs: 
+ * DATE 		AUTHOR 		DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 03-05-2017 	DuyenTB 	Create
  */
 public class DataAccess {
 	Connection conn = null;
-	
+
 	/**
-	 * Connect csdl
-	 * @return
+	 * Ham ket noi database
+	 * 
+	 * @return conn
 	 */
-	public Connection getConnect(){
+	public Connection getConnect() {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			conn =DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ORMS;user=sa;password=abc@1234;");
+			conn = DriverManager
+					.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ORMS;user=sa;password=abc@1234;");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return conn;

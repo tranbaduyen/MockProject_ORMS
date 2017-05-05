@@ -13,75 +13,96 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
-import common.StringProcess;
+import common.ValidateData;
 import form.RoomForm;
 import model.bo.RoomBO;
 
 /**
- * @author HCD-Fresher204
+ * CreateNewRoomAction.java
  *
+ * Version 1.0
+ *
+ * Date: 03-05-2017
+ *
+ * Copyright
+ *
+ * Modification Logs: 
+ * DATE 			AUTHOR 		DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 03-05-2017 		DuyenTB 	Create
  */
-public class CreateNewRoomAction extends Action{
+public class CreateNewRoomAction extends Action {
 	@Override
-	public ActionForward execute(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		RoomForm roomForm = (RoomForm) form;
 		RoomBO roomBO = new RoomBO();
-		//validate du lieu
-		if("submit".equals(roomForm.getSubmit())){
+		
+		// Validate du lieu
+		if ("Save".equals(roomForm.getSubmit())) {
 			ActionErrors actionErrors = new ActionErrors();
-			if(StringProcess.isEmpty(roomForm.getRoomName())){
+			if (ValidateData.isEmpty(roomForm.getRoomName().trim())) {
 				actionErrors.add("roomNameError", new ActionMessage("error.roomName.trong"));
 			}
-			if(roomBO.isDuplicateRoomName(roomForm.getRoomName())){
+			if (roomBO.isDuplicateRoomName(roomForm.getRoomName())) {
 				actionErrors.add("roomNameError", new ActionMessage("error.roomName.trung"));
 			}
-			if(StringProcess.isAllNumber(roomForm.getRoomName())){
+			if (ValidateData.isAllNumber(roomForm.getRoomName())) {
 				actionErrors.add("roomNameError", new ActionMessage("error.roomName.so"));
 			}
-			
-			if(!StringProcess.isNumberOnly(String.valueOf(roomForm.getRoomSeats()))){
+
+			if (!ValidateData.isNumberOnly(roomForm.getRoomSeats())) {
 				actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.chuoi"));
 			}
-			if(StringProcess.isEmpty(roomForm.getRoomSeats())){
+			if (ValidateData.isEmpty(roomForm.getRoomSeats())) {
 				actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.trong"));
 			}
-			if(StringProcess.isMoreThan500Seats(roomForm.getRoomSeats())){
+			if (ValidateData.isMoreThan500Seats(roomForm.getRoomSeats())) {
 				actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.more500Seats"));
 			}
-			System.out.println("Str = "+String.valueOf(roomForm.getRoomSeats()) + " + " + StringProcess.isNumberOnly(String.valueOf(roomForm.getRoomSeats())));
+			if (ValidateData.isNegative(roomForm.getRoomSeats())) {
+				actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.negative"));
+			}
 			
-			
-			if(StringProcess.isEmpty(roomForm.getDescription())){
+			if (ValidateData.isEmpty(roomForm.getDescription().trim())) {
 				actionErrors.add("descriptionError", new ActionMessage("error.description.trong"));
 			}
-			
-			if(StringProcess.isEmpty(roomForm.getPriceHour())){
+
+			if (ValidateData.isEmpty(roomForm.getPriceHour())) {
 				actionErrors.add("priceHourError", new ActionMessage("error.priceHour.trong"));
 			}
-			if(StringProcess.isEmpty(roomForm.getPriceFull())){
+			if (ValidateData.isNegative(roomForm.getPriceHour())) {
+				actionErrors.add("priceHourError", new ActionMessage("error.priceHour.negative"));
+			}
+			if (ValidateData.isEmpty(roomForm.getPriceFull())) {
 				actionErrors.add("priceFullError", new ActionMessage("error.priceFull.trong"));
 			}
-				saveErrors(request, actionErrors);
-			if(actionErrors.size()>0){
+			if (ValidateData.isNegative(roomForm.getPriceFull())) {
+				actionErrors.add("priceFullError", new ActionMessage("error.priceFull.negative"));
+			}
+			
+			saveErrors(request, actionErrors);
+			
+			if (actionErrors.size() > 0) {
 				return mapping.findForward("createError");
 			}
 		}
-		if("submit".equals(roomForm.getSubmit())){		//nhan nut Submit o trang Create New Room
+		
+		// nhan nut Save o trang Create New Room
+		if ("Save".equals(roomForm.getSubmit())) { 
 			String roomName = roomForm.getRoomName();
 			int roomSeats = roomForm.getRoomSeats();
-			String description= roomForm.getDescription();
+			String description = roomForm.getDescription();
 			float priceHour = roomForm.getPriceHour();
 			float priceFull = roomForm.getPriceFull();
 			int status = 0;
-			
+
 			roomBO.addRoom(roomName, roomSeats, description, priceHour, priceFull, status);
 			return mapping.findForward("createSuccess");
-		} else {											//chuyen sang trang Create New Room
+		} else { // chuyen sang trang Create New Room
 			return mapping.findForward("create");
 		}
 	}

@@ -2,7 +2,7 @@ body{
     margin: 30px auto 0;
 }
 .require::after{
-	content:'*';
+	content:'(*)';
 	color:red;
 }
 .error{
@@ -23,6 +23,12 @@ background-repeat: repeat-x;
 position: absolute;
 bottom: 0;
 left: 10%;
+}
+.lblError::before{
+	content:'(*) ';
+}
+.lblError{
+	
 }
 #primary_nav_wrap
 {

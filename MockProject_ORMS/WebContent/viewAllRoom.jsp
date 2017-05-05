@@ -20,7 +20,7 @@
 		<script src="js/dataTables.bootstrap.js"></script>
 	</head>
 	<body>
-		<div class="container">
+		<div class="container" style="background-color: #f1ddcb; padding-right: 0px;padding-left: 0px;">
 			<div class= "menu-background">
 						<div class="menu">
 							<nav id="primary_nav_wrap">
@@ -38,11 +38,11 @@
 							</nav>
 						</div>
 			</div>
-			<div>
+			<div style="background-color:#eccdb1;">
 				<table>
 					<tr >
-						<td style="padding:0px">
-							<label style="color:#000">Room Name:</label>
+						<td style="padding-left:5px">
+							<label style="color:#5b656d">Room Name:</label>
 						</td>
 						<td style="padding:5px">
 							<input type="text" name="roomName" class="form-control"  />
@@ -53,8 +53,8 @@
 						<td style="padding-right:5px">
 							<button type="button" class="btn btn-info">Export to Excel</button>
 						</td>
-						<td style="float:right;margin: 5px 0px 0px 463px;">
-							<html:link styleClass="btn btn-info" action="/create-room">Add a New Room</html:link>
+						<td style="float:right;margin: 10px 0px 10px 480px;">
+							<html:link styleClass="btn btn-danger" action="/create-room">Add a New Room</html:link>
 						</td>
 					</tr>
 				</table>
@@ -63,7 +63,7 @@
 				<p style="padding: 5px">THE ROOM LIST</p>
 			</div>
 			<div>
-				<table id="example" class="table table-striped table-bordered">
+				<table id="example" class="table table-striped table-bordered" style="border: 1px solid;">
 					<thead class="headerTable">
 						<tr>
 							<td>RoomName</td>

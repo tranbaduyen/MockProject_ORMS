@@ -12,16 +12,31 @@ import java.util.ArrayList;
 import model.bean.Room;
 
 /**
- * @author HCD-Fresher204
+ * RoomDAO.java
  *
+ * Version 1.0
+ *
+ * Date: 03-05-2017
+ *
+ * Copyright
+ *
+ * Modification Logs: 	
+ * DATE 			AUTHOR 		DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 03-05-2017 		DuyenTB 	Create
  */
 public class RoomDAO {
 	DataAccess da = new DataAccess();
-	Connection connection=null;
-	Statement stmt=null;
+	Connection connection = null;
+	Statement stmt = null;
 	private static int noOfRecords;
 	private int num = 0;
-	
+
+	/**
+	 * Ham lay danh sach tat ca cac Room
+	 * 
+	 * @return list
+	 */
 	public ArrayList<Room> getListRoom() {
 		connection = da.getConnect();
 		String sql = "SELECT * FROM  ROOM ";
@@ -32,7 +47,7 @@ public class RoomDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	
+
 		ArrayList<Room> list = new ArrayList<Room>();
 		Room room;
 		try {
@@ -50,13 +65,19 @@ public class RoomDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-			return list;
+		return list;
 	}
+
+	/**
+	 * Ham lay danh sach Room tu offset den noOfrecords
+	 * 
+	 * @param offset
+	 * @param noOfRecords
+	 * @return list
+	 */
 	public ArrayList<Room> getListRoom(int offset, int noOfRecords) {
-		String sql = "SELECT * "
-				+ " FROM ( SELECT r.*, ROW_NUMBER() over (ORDER BY roomName ) as ct from  ROOM r ) " +
-					"sub WHERE ( ct > "
-				+ offset + " AND ct <= " + noOfRecords + " ) ";
+		String sql = "SELECT * " + " FROM ( SELECT r.*, ROW_NUMBER() over (ORDER BY roomName ) as ct from  ROOM r ) "
+				+ "sub WHERE ( ct > " + offset + " AND ct <= " + noOfRecords + " ) ";
 		System.out.println(sql);
 		ArrayList<Room> list = new ArrayList<Room>();
 		Room room = null;
@@ -68,7 +89,7 @@ public class RoomDAO {
 
 			while (rs.next()) {
 				room = new Room();
-				
+
 				room.setRoomID(rs.getInt("ROOMID"));
 				room.setRoomName(rs.getString("ROOMNAME"));
 				room.setRoomSeats(rs.getInt("ROOMSEATS"));
@@ -97,11 +118,16 @@ public class RoomDAO {
 
 		return list;
 	}
+
+	/**
+	 * Ham lay thong tin chi tiet cua 1 Room
+	 * 
+	 * @param roomID
+	 * @return room
+	 */
 	public Room getRoomDetail(int roomID) {
-		// TODO Auto-generated method stub
 		connection = da.getConnect();
-		String sql=	String.format("SELECT * "+
-					" FROM ROOM WHERE ROOMID = %s", roomID);
+		String sql = String.format("SELECT * " + " FROM ROOM WHERE ROOMID = %s", roomID);
 		ResultSet rs = null;
 		try {
 			Statement stmt = connection.createStatement();
@@ -109,10 +135,10 @@ public class RoomDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		Room room = new Room();
 		try {
-			while(rs.next()){
+			while (rs.next()) {
 				room.setRoomID(rs.getInt("ROOMID"));
 				room.setRoomName(rs.getString("ROOMNAME"));
 				room.setRoomSeats(rs.getInt("ROOMSEATS"));
@@ -126,24 +152,24 @@ public class RoomDAO {
 		}
 		return room;
 	}
-	public void addRoom(String roomName, int roomSeats, String description, float priceHour, float priceFull, int status) {
+
+	/**
+	 * Ham them moi 1 Room vao database
+	 * 
+	 * @param roomName
+	 * @param roomSeats
+	 * @param description
+	 * @param priceHour
+	 * @param priceFull
+	 * @param status
+	 */
+	public void addRoom(String roomName, int roomSeats, String description, float priceHour, float priceFull,
+			int status) {
 		connection = da.getConnect();
-		String sql=	String.format("INSERT INTO ROOM(roomName,roomSeats,description,priceHour,priceFull,status) "+
-					" VALUES ( N'%s',%s,N'%s',%s,%s,%s )", roomName, roomSeats, description, priceHour,priceFull,status);
-		System.out.println(sql);
-		try {
-			Statement stmt = connection.createStatement();
-			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	public void updateRoom(int roomID, String roomName, int roomSeats, String description, float priceHour, float priceFull, int status) {
-		// TODO Auto-generated method stub
-		connection = da.getConnect();
-		String sql=	String.format("UPDATE ROOM "+
-				" SET ROOMNAME = N'%s', ROOMSEATS = %s, DESCRIPTION = N'%s', PRICEHOUR = %s, PRICEFULL = %s, STATUS = 0 " +
-				" WHERE ROOMID = '%s'", roomName, roomSeats, description, priceHour, priceFull, roomID);
+		String sql = String.format(
+				"INSERT INTO ROOM(roomName,roomSeats,description,priceHour,priceFull,status) "
+						+ " VALUES ( N'%s',%s,N'%s',%s,%s,%s )",
+				roomName, roomSeats, description, priceHour, priceFull, status);
 		System.out.println(sql);
 		try {
 			Statement stmt = connection.createStatement();
@@ -153,10 +179,23 @@ public class RoomDAO {
 		}
 	}
 
-	public void deleteRoom(int roomID) {
-		// TODO Auto-generated method stub
+	/**
+	 * Ham cap nhat thong tin 1 Room vao database
+	 * 
+	 * @param roomID
+	 * @param roomName
+	 * @param roomSeats
+	 * @param description
+	 * @param priceHour
+	 * @param priceFull
+	 * @param status
+	 */
+	public void updateRoom(int roomID, String roomName, int roomSeats, String description, float priceHour,
+			float priceFull, int status) {
 		connection = da.getConnect();
-		String sql=	String.format("DELETE FROM ROOM WHERE ROOMID = %s", roomID);
+		String sql = String.format("UPDATE ROOM "
+				+ " SET ROOMNAME = N'%s', ROOMSEATS = %s, DESCRIPTION = N'%s', PRICEHOUR = %s, PRICEFULL = %s, STATUS = 0 "
+				+ " WHERE ROOMID = '%s'", roomName, roomSeats, description, priceHour, priceFull, roomID);
 		System.out.println(sql);
 		try {
 			Statement stmt = connection.createStatement();
@@ -165,7 +204,30 @@ public class RoomDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Ham xoa 1 Room tu database
+	 * 
+	 * @param roomID
+	 */
+	public void deleteRoom(int roomID) {
+		connection = da.getConnect();
+		String sql = String.format("DELETE FROM ROOM WHERE ROOMID = %s", roomID);
+		System.out.println(sql);
+		try {
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Ham kiem tra roomName da ton tai trong database hay chua.
+	 * 
+	 * @param roomName
+	 * @return true neu roomName ton tai, false neu roomName khong ton tai
+	 */
 	public boolean isDuplicateRoomName(String roomName) {
 		connection = da.getConnect();
 		String sql = String.format("SELECT count(RoomName) as num FROM ROOM WHERE roomName = N'%s'", roomName);
@@ -177,19 +239,20 @@ public class RoomDAO {
 			e.printStackTrace();
 		}
 		try {
-			while(rs.next()){
+			while (rs.next()) {
 				num = rs.getInt("num");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("numName = "+num);
-		if(num!=0) 
+		if (num != 0)
 			return true;
 		return false;
 	}
-	
+
 	/**
+	 * Ham lay noOfRecords
+	 * 
 	 * @return the noOfRecords
 	 */
 	public static int getNoOfRecords() {
@@ -197,6 +260,8 @@ public class RoomDAO {
 	}
 
 	/**
+	 * Ham gan gia tri cho noOfRecords
+	 * 
 	 * @param noOfRecords
 	 *            the noOfRecords to set
 	 */

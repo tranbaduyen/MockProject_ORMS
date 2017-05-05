@@ -19,48 +19,56 @@ import model.bo.RoomBO;
 import model.dao.RoomDAO;
 
 /**
- * @author HCD-Fresher204
+ * RoomManagementAction.java
  *
+ * Version 1.0
+ *
+ * Date: 03-05-2017
+ *
+ * Copyright
+ *
+ * Modification Logs: 
+ * DATE 			AUTHOR 		DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 03-05-2017 		DuyenTB 	Create
  */
-public class RoomManagementAction extends Action{
+public class RoomManagementAction extends Action {
 	@Override
-	public ActionForward execute(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		
+
 		RoomManagementForm roomManagementForm = (RoomManagementForm) form;
-		
+
 		int page = 1;
-		int recordsPerPage = 5;
-		int noOfRecords=0;
-		int noOfPages=0;
-		if(request.getParameter("page") != null){
+		int recordsPerPage = 10;
+		int noOfRecords = 0;
+		int noOfPages = 0;
+		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
-			System.out.println("page get = "+page);
+			System.out.println("page get = " + page);
 		}
 		ArrayList<Integer> listPage = new ArrayList<Integer>();
 		ArrayList<Room> listRoom = null;
 		RoomBO roomBO = new RoomBO();
-		//listRoom = roomBO.getListRoom();
-		listRoom = roomBO.getListRoom((page-1)*recordsPerPage,
-				 recordsPerPage*page);
-		
+		// listRoom = roomBO.getListRoom();
+		listRoom = roomBO.getListRoom((page - 1) * recordsPerPage, recordsPerPage * page);
+
 		noOfRecords = RoomDAO.getNoOfRecords();
 		noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-		for(int i=1;i<=noOfPages;i++){
+		for (int i = 1; i <= noOfPages; i++) {
 			listPage.add(i);
 		}
-		
+
 		try {
 			roomManagementForm.setListRoom(listRoom);
 			roomManagementForm.setListPage(listPage);
 			roomManagementForm.setCurrentPage(page);
 			roomManagementForm.setNoOfPages(noOfPages);
 		} catch (NullPointerException npe) {
-			System.out.println("Exception in "+ npe);
+			System.out.println("Exception in " + npe);
 		}
 		return mapping.findForward("dsRoom");
 	}
