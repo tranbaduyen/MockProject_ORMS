@@ -36,14 +36,14 @@ public class ValidateData {
 	 * @return boolean
 	 */
 	public static boolean isEmpty(String s) {
-		System.out.println("s = ["+s +"]");
-		
-		if (s == null || s.length() == 0  || " ".equals(s))
+		String s1 = s.trim();
+		if (s1 == null || s1.length() == 0  || " ".equals(s1))
 			return true;
 		return false;
 	}
 
 	 /**
+	  * Ham kiem tra du lieu trong
 	 * @param n
 	 * @return
 	 */
@@ -53,6 +53,7 @@ public class ValidateData {
 		 return false;
 	 }
 	/**
+	 * Ham kiem tra du lieu trong
 	 * @param n
 	 * @return
 	 */
@@ -69,13 +70,15 @@ public class ValidateData {
 	 * @return boolean
 	 */
 	public static boolean isAllNumber(String s) {
+		String s1 = s.trim();
 		String regex = "[0-9]+";
-		if (s.matches(regex))
+		if (s1.matches(regex))
 			return true;
 		return false;
 	}
 
 	 /**
+	  * Ham kiem tra kieu Int
 	 * @param s
 	 * @return
 	 */
@@ -86,6 +89,7 @@ public class ValidateData {
 	 }
 	
 	/**
+	 * Ham kiem tra kieu Float
 	 * @param s
 	 * @return
 	 */
@@ -114,6 +118,7 @@ public class ValidateData {
 //	}
 
 	/**
+	 * Ham kiem tra so ghe > 500
 	 * @param n
 	 * @return
 	 */
@@ -124,6 +129,7 @@ public class ValidateData {
 	}
 
 	/**
+	 *  Ham kiem tra so am (int)
 	 * @param n
 	 * @return
 	 */
@@ -134,6 +140,7 @@ public class ValidateData {
 	}
 
 	/**
+	 * Ham kiem tra so am (float)
 	 * @param n
 	 * @return
 	 */
@@ -141,5 +148,27 @@ public class ValidateData {
 		if (n < 0)
 			return true;
 		return false;
+	}
+	
+	/**
+	 * Ham kiem tra xau co do dai lon hon 20 ki tu
+	 * @param s
+	 * @return boolean
+	 */
+	public static boolean isMaxlength50String(String s) {
+		if(s.length() >=50) return true;
+		return false;
+	}
+	
+	/**
+	 * Ham kiem tra xau co ki tu dac biet hay khong
+	 * @param s
+	 * @return
+	 */
+	public static boolean isSpecialCharacters(String s) {
+		String s1 = s.trim();
+		String regex = ("^[a-zA-Z0-9]*$");
+		if (s1.matches(regex)) return false;
+		return true;
 	}
 }

@@ -53,7 +53,13 @@ public class CreateNewRoomAction extends Action {
 			if (ValidateData.isAllNumber(roomForm.getRoomName())) {
 				actionErrors.add("roomNameError", new ActionMessage("error.roomName.so"));
 			}
-
+			if (ValidateData.isMaxlength50String(roomForm.getRoomName())) {
+				actionErrors.add("roomNameError", new ActionMessage("error.roomName.maxlength"));
+			}
+			if(ValidateData.isSpecialCharacters(roomForm.getRoomName())){
+				actionErrors.add("roomNameError", new ActionMessage("error.roomName.kituDB"));
+			}
+			
 			if (!ValidateData.isNumberOnly(roomForm.getRoomSeats())) {
 				actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.chuoi"));
 			}
@@ -66,9 +72,15 @@ public class CreateNewRoomAction extends Action {
 			if (ValidateData.isNegative(roomForm.getRoomSeats())) {
 				actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.negative"));
 			}
+			if(ValidateData.isSpecialCharacters(roomForm.getRoomName())){
+				actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.kituDB"));
+			}
 			
 			if (ValidateData.isEmpty(roomForm.getDescription().trim())) {
 				actionErrors.add("descriptionError", new ActionMessage("error.description.trong"));
+			}
+			if(ValidateData.isSpecialCharacters(roomForm.getDescription())){
+				actionErrors.add("descriptionError", new ActionMessage("error.description.kituDB"));
 			}
 
 			if (ValidateData.isEmpty(roomForm.getPriceHour())) {
@@ -77,11 +89,18 @@ public class CreateNewRoomAction extends Action {
 			if (ValidateData.isNegative(roomForm.getPriceHour())) {
 				actionErrors.add("priceHourError", new ActionMessage("error.priceHour.negative"));
 			}
+			if (!ValidateData.isFloatNumber(roomForm.getPriceHour())) {
+				actionErrors.add("priceHourError", new ActionMessage("error.priceHour.chuoi"));
+			}
+			
 			if (ValidateData.isEmpty(roomForm.getPriceFull())) {
 				actionErrors.add("priceFullError", new ActionMessage("error.priceFull.trong"));
 			}
 			if (ValidateData.isNegative(roomForm.getPriceFull())) {
 				actionErrors.add("priceFullError", new ActionMessage("error.priceFull.negative"));
+			}
+			if (!ValidateData.isFloatNumber(roomForm.getPriceFull())) {
+				actionErrors.add("priceFullError", new ActionMessage("error.priceFull.chuoi"));
 			}
 			
 			saveErrors(request, actionErrors);
