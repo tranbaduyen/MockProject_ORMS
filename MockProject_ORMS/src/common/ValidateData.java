@@ -167,8 +167,9 @@ public class ValidateData {
 	 */
 	public static boolean isSpecialCharacters(String s) {
 		String s1 = s.trim();
-		String regex = ("^[a-zA-Z0-9]*$");
-		if (s1.matches(regex)) return false;
-		return true;
+		//String regex = ("^[a-zA-Z\\d\\-_.,\\s]+$");
+		String regex = ("[\\W]+");
+		if (s1.matches(regex)) return true;
+		return false;
 	}
 }
