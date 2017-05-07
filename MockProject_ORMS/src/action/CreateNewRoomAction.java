@@ -44,7 +44,7 @@ public class CreateNewRoomAction extends Action {
 		// Validate du lieu
 		if ("Save".equals(roomForm.getSubmit())) {
 			ActionErrors actionErrors = new ActionErrors();
-			if (ValidateData.isEmpty(roomForm.getRoomName().trim())) {
+			if (ValidateData.isEmpty(roomForm.getRoomName())) {
 				actionErrors.add("roomNameError", new ActionMessage("error.roomName.trong"));
 			}
 			if (roomBO.isDuplicateRoomName(roomForm.getRoomName())) {
@@ -56,7 +56,7 @@ public class CreateNewRoomAction extends Action {
 			if (ValidateData.isMaxlength50String(roomForm.getRoomName())) {
 				actionErrors.add("roomNameError", new ActionMessage("error.roomName.maxlength"));
 			}
-			if(ValidateData.isSpecialCharacters(roomForm.getRoomName())){
+			if(ValidateData.isSpecialCharacters(roomForm.getRoomName().trim())){
 				actionErrors.add("roomNameError", new ActionMessage("error.roomName.kituDB"));
 			}
 			
@@ -72,11 +72,8 @@ public class CreateNewRoomAction extends Action {
 			if (ValidateData.isNegative(roomForm.getRoomSeats())) {
 				actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.negative"));
 			}
-			if(ValidateData.isSpecialCharacters(roomForm.getRoomName())){
-				actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.kituDB"));
-			}
 			
-			if (ValidateData.isEmpty(roomForm.getDescription().trim())) {
+			if (ValidateData.isEmpty(roomForm.getDescription())) {
 				actionErrors.add("descriptionError", new ActionMessage("error.description.trong"));
 			}
 			if(ValidateData.isSpecialCharacters(roomForm.getDescription())){
@@ -112,9 +109,9 @@ public class CreateNewRoomAction extends Action {
 		
 		// nhan nut Save o trang Create New Room
 		if ("Save".equals(roomForm.getSubmit())) { 
-			String roomName = roomForm.getRoomName();
+			String roomName = roomForm.getRoomName().trim();
 			int roomSeats = roomForm.getRoomSeats();
-			String description = roomForm.getDescription();
+			String description = roomForm.getDescription().trim();
 			float priceHour = roomForm.getPriceHour();
 			float priceFull = roomForm.getPriceFull();
 			int status = 0;

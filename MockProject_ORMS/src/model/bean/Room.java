@@ -27,7 +27,7 @@ public class Room {
 	private int status;
 
 	/**
-	 * @return
+	 * @return roomID
 	 */
 	public int getRoomID() {
 		return roomID;
@@ -41,7 +41,7 @@ public class Room {
 	}
 
 	/**
-	 * @return
+	 * @return roomName
 	 */
 	public String getRoomName() {
 		return roomName;
@@ -55,7 +55,7 @@ public class Room {
 	}
 
 	/**
-	 * @return
+	 * @return roomSeats
 	 */
 	public int getRoomSeats() {
 		return roomSeats;
@@ -69,7 +69,7 @@ public class Room {
 	}
 
 	/**
-	 * @return
+	 * @return description
 	 */
 	public String getDescription() {
 		return description;
@@ -83,7 +83,7 @@ public class Room {
 	}
 
 	/**
-	 * @return
+	 * @return priceHour
 	 */
 	public float getPriceHour() {
 		return priceHour;
@@ -97,8 +97,8 @@ public class Room {
 	}
 
 	/**
-	 * @return
-	 */
+	 * @return priceFull
+	 */ 
 	public float getPriceFull() {
 		return priceFull;
 	}
@@ -111,7 +111,7 @@ public class Room {
 	}
 
 	/**
-	 * @return
+	 * @return status
 	 */
 	public int getStatus() {
 		return status;

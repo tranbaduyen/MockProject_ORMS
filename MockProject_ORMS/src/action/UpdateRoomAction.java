@@ -53,7 +53,7 @@ public class UpdateRoomAction extends Action {
 		// Validate du lieu
 		if ("Save".equals(roomForm.getSubmit())) {
 			ActionErrors actionErrors = new ActionErrors();
-			if (ValidateData.isEmpty(roomForm.getRoomName().trim())) {
+			if (ValidateData.isEmpty(roomForm.getRoomName())) {
 				actionErrors.add("roomNameError", new ActionMessage("error.roomName.trong"));
 			}
 			if (roomBO.isDuplicateRoomName(roomForm.getRoomName())) {
@@ -65,7 +65,7 @@ public class UpdateRoomAction extends Action {
 			if (ValidateData.isMaxlength50String(roomForm.getRoomName())) {
 				actionErrors.add("roomNameError", new ActionMessage("error.roomName.maxlength"));
 			}
-			if(ValidateData.isSpecialCharacters(roomForm.getRoomName())){
+			if(ValidateData.isSpecialCharacters(roomForm.getRoomName().trim())){
 				actionErrors.add("roomNameError", new ActionMessage("error.roomName.kituDB"));
 			}
 			
@@ -81,11 +81,8 @@ public class UpdateRoomAction extends Action {
 			if (ValidateData.isNegative(roomForm.getRoomSeats())) {
 				actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.negative"));
 			}
-			if(ValidateData.isSpecialCharacters(roomForm.getRoomName())){
-				actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.kituDB"));
-			}
 			
-			if (ValidateData.isEmpty(roomForm.getDescription().trim())) {
+			if (ValidateData.isEmpty(roomForm.getDescription())) {
 				actionErrors.add("descriptionError", new ActionMessage("error.description.trong"));
 			}
 			if(ValidateData.isSpecialCharacters(roomForm.getDescription())){
@@ -118,7 +115,7 @@ public class UpdateRoomAction extends Action {
 				return mapping.findForward("createError");
 			}
 		}
-		// update Room
+		// Update Room khi bam nut Save
 		int roomID = roomForm.getRoomID();
 		if ("Save".equals(roomForm.getSubmit())) {
 			String roomName = roomForm.getRoomName();
@@ -130,8 +127,7 @@ public class UpdateRoomAction extends Action {
 
 			roomBO.updateRoom(roomID, roomName, roomSeats, description, priceHour, priceFull, status);
 			return mapping.findForward("updateSuccess");
-		} else {
-
+		} else { // Hien thi trang Update Room
 			Room room = roomBO.getRoomDetail(roomID);
 			roomForm.setRoomName(room.getRoomName());
 			roomForm.setRoomSeats(room.getRoomSeats());

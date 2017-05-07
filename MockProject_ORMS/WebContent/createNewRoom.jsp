@@ -47,7 +47,8 @@
 				<div class="row form-group">
 			        <label class="col-sm-3 require">RoomName</label>
 			        <div class="col-sm-8">
-			        	<html:text property="roomName" styleClass="form-control" maxlength="50"></html:text>
+			        	<html:text property="roomName" styleClass="form-control" maxlength="50" errorStyleClass="errorT"
+                errorKey="org.apache.struts.action.ERROR" tabindex="1"></html:text>
 			        	<span style="color:red;" ><html:errors  property="roomNameError" /></span>
 			        	
 			        </div>
@@ -55,7 +56,8 @@
 		        <div class="row form-group ">
 		            <label class="col-sm-3 require">RoomSeats</label>
 		            <div class="col-sm-8">
-						<html:text property="roomSeats" styleClass="form-control" >
+						<html:text property="roomSeats" styleClass="form-control" errorStyleClass="errorT"
+                errorKey="org.apache.struts.action.ERROR" tabindex="2">
 						</html:text><span style="color:red;"><html:errors  property="roomSeatsError"/></span>
 						
 		            </div>
@@ -63,24 +65,27 @@
 		        <div class="row form-group">
 		            <label class="col-sm-3 require">Description</label>
 		            <div class="col-sm-8">
-		            	<html:textarea property="description" styleClass="form-control" rows="3"></html:textarea>
-		            	<span style="color:red;display: inline;"><html:errors  property="descriptionError"/></span>
+		            	<html:textarea property="description" styleClass="form-control" rows="2" errorStyleClass="errorT"
+                errorKey="org.apache.struts.action.ERROR" tabindex="3"></html:textarea>
+		            	<span style="color:red;"><html:errors  property="descriptionError"/></span>
 		            	
 		            </div>	            
 		        </div>
 		        <div class="row form-group">
 		            <label class="col-sm-3 require">PriceHour</label>
 		            <div class="col-sm-8">
-						<html:text property="priceHour" styleClass="form-control" ></html:text>
-						<span style="color:red;display: inline;"><html:errors  property="priceHourError"/></span>
+						<html:text property="priceHour" styleClass="form-control" errorStyleClass="errorT"
+                errorKey="org.apache.struts.action.ERROR" tabindex="4"></html:text>
+						<span style="color:red;"><html:errors  property="priceHourError"/></span>
 		            	
 		            </div>
 		        </div>
 				<div class="row form-group">
 		            <label class="col-sm-3 require">PriceFull</label>
 		            <div class="col-sm-8" >
-						<html:text property="priceFull" styleClass="form-control" ></html:text>
-						<span style="color:red;display: inline;"><html:errors  property="priceFullError"/></span>
+						<html:text property="priceFull" styleClass="form-control" errorStyleClass="errorT"
+                errorKey="org.apache.struts.action.ERROR" tabindex="5"></html:text>
+						<span style="color:red;"><html:errors  property="priceFullError"/></span>
 		            	
 		            </div>
 		        </div>

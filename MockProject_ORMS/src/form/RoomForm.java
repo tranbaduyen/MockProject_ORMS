@@ -36,7 +36,7 @@ public class RoomForm extends ActionForm {
 	private String notification;
 
 	/**
-	 * @return
+	 * @return roomID
 	 */
 	public int getRoomID() {
 		return roomID;
@@ -50,7 +50,7 @@ public class RoomForm extends ActionForm {
 	}
 
 	/**
-	 * @return
+	 * @return roomName
 	 */
 	public String getRoomName() {
 		return roomName;
@@ -78,7 +78,7 @@ public class RoomForm extends ActionForm {
 	}
 
 	/**
-	 * @return
+	 * @return description
 	 */
 	public String getDescription() {
 		return description;
@@ -92,7 +92,7 @@ public class RoomForm extends ActionForm {
 	}
 
 	/**
-	 * @return
+	 * @return priceHour
 	 */
 	public float getPriceHour() {
 		return priceHour;
@@ -106,7 +106,7 @@ public class RoomForm extends ActionForm {
 	}
 
 	/**
-	 * @return
+	 * @return priceFull
 	 */
 	public float getPriceFull() {
 		return priceFull;
@@ -120,7 +120,7 @@ public class RoomForm extends ActionForm {
 	}
 
 	/**
-	 * @return
+	 * @return submit
 	 */
 	public String getSubmit() {
 		return submit;
@@ -134,7 +134,7 @@ public class RoomForm extends ActionForm {
 	}
 
 	/**
-	 * @return
+	 * @return action
 	 */
 	public String getAction() {
 		return action;
@@ -148,7 +148,7 @@ public class RoomForm extends ActionForm {
 	}
 
 	/**
-	 * @return
+	 * @return notification
 	 */
 	public String getNotification() {
 		return notification;
@@ -174,5 +174,6 @@ public class RoomForm extends ActionForm {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+
 	}
 }

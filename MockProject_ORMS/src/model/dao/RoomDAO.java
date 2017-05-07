@@ -39,7 +39,7 @@ public class RoomDAO {
 	 */
 	public ArrayList<Room> getListRoom() {
 		connection = da.getConnect();
-		String sql = "SELECT * FROM  ROOM ";
+		String sql = "SELECT RoomID, RoomName, RoomSeats, Description, PriceHour, PriceFull, Status FROM  ROOM ";
 		ResultSet rs = null;
 		try {
 			Statement stmt = connection.createStatement();
@@ -76,7 +76,7 @@ public class RoomDAO {
 	 * @return list
 	 */
 	public ArrayList<Room> getListRoom(int offset, int noOfRecords) {
-		String sql = "SELECT * " + " FROM ( SELECT r.*, ROW_NUMBER() over (ORDER BY roomName ) as ct from  ROOM r ) "
+		String sql = "SELECT RoomID, RoomName, RoomSeats, Description, PriceHour, PriceFull, Status " + " FROM ( SELECT r.*, ROW_NUMBER() over (ORDER BY roomName ) as ct from  ROOM r ) "
 				+ "sub WHERE ( ct > " + offset + " AND ct <= " + noOfRecords + " ) ";
 		System.out.println(sql);
 		ArrayList<Room> list = new ArrayList<Room>();
@@ -127,7 +127,7 @@ public class RoomDAO {
 	 */
 	public Room getRoomDetail(int roomID) {
 		connection = da.getConnect();
-		String sql = String.format("SELECT * " + " FROM ROOM WHERE ROOMID = %s", roomID);
+		String sql = String.format("SELECT RoomID, RoomName, RoomSeats, Description, PriceHour, PriceFull, Status " + " FROM ROOM WHERE ROOMID = %s", roomID);
 		ResultSet rs = null;
 		try {
 			Statement stmt = connection.createStatement();

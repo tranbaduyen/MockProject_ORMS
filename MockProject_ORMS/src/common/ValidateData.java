@@ -20,24 +20,30 @@ public class ValidateData {
 	/**
 	 * Ham in ra mot xau, null in ra xau rong
 	 * 
-	 * @param s
+	 * @param str
 	 * @return String
 	 */
-	public static String getValidString(String s) {
-		if (s == null)
+	public static String getValidString(String str) {
+		if (str == null)
 			return "";
-		return s;
+		return str;
 	}
-
+	
+	public static String chuanHoa(String str) {
+        str = str.trim();
+        str = str.replaceAll("\\s+", " ");
+        return str;
+    }
+	
 	/**
 	 * Ham kiem tra xau rong hay khong
 	 * 
-	 * @param s
+	 * @param str
 	 * @return boolean
 	 */
-	public static boolean isEmpty(String s) {
-		String s1 = s.trim();
-		if (s1 == null || s1.length() == 0  || " ".equals(s1))
+	public static boolean isEmpty(String str) {
+		str = chuanHoa(str);
+		if (str == null || str.length() == 0  || " ".equals(str))
 			return true;
 		return false;
 	}
@@ -66,13 +72,13 @@ public class ValidateData {
 	/**
 	 * Ham kiem tra xem xau co bao gom tat ca chu so hay khong
 	 * 
-	 * @param s
+	 * @param str
 	 * @return boolean
 	 */
-	public static boolean isAllNumber(String s) {
-		String s1 = s.trim();
+	public static boolean isAllNumber(String str) {
+		str = chuanHoa(str);
 		String regex = "[0-9]+";
-		if (s1.matches(regex))
+		if (str.matches(regex))
 			return true;
 		return false;
 	}
@@ -152,24 +158,25 @@ public class ValidateData {
 	
 	/**
 	 * Ham kiem tra xau co do dai lon hon 20 ki tu
-	 * @param s
+	 * @param str
 	 * @return boolean
 	 */
-	public static boolean isMaxlength50String(String s) {
-		if(s.length() >=50) return true;
+	public static boolean isMaxlength50String(String str) {
+		if(str.length() >=50) return true;
 		return false;
 	}
 	
 	/**
 	 * Ham kiem tra xau co ki tu dac biet hay khong
-	 * @param s
+	 * @param str
 	 * @return
 	 */
-	public static boolean isSpecialCharacters(String s) {
-		String s1 = s.trim();
-		//String regex = ("^[a-zA-Z\\d\\-_.,\\s]+$");
-		String regex = ("[\\W]+");
-		if (s1.matches(regex)) return true;
-		return false;
+	public static boolean isSpecialCharacters(String str) {
+		str = chuanHoa(str);
+		System.out.println("s1="+str);
+		String regex = ("[0-9a-zA-Z\\s]*");
+		//String regex = ("[\\W]+");
+		if (str.matches(regex)) return false;
+		return true;
 	}
 }
