@@ -109,9 +109,9 @@ public class CreateNewRoomAction extends Action {
 		
 		// nhan nut Save o trang Create New Room
 		if ("Save".equals(roomForm.getSubmit())) { 
-			String roomName = roomForm.getRoomName().trim();
+			String roomName = roomForm.getRoomName();
 			int roomSeats = roomForm.getRoomSeats();
-			String description = roomForm.getDescription().trim();
+			String description = roomForm.getDescription();
 			float priceHour = roomForm.getPriceHour();
 			float priceFull = roomForm.getPriceFull();
 			int status = 0;

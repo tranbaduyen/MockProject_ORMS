@@ -24,9 +24,8 @@ public class ValidateData {
 	 * @return String
 	 */
 	public static String getValidString(String str) {
-		if (str == null)
-			return "";
-		return str;
+		String temp = "";
+		return (str == null)?temp:str;
 	}
 	
 	public static String chuanHoa(String str) {
@@ -43,9 +42,7 @@ public class ValidateData {
 	 */
 	public static boolean isEmpty(String str) {
 		str = chuanHoa(str);
-		if (str == null || str.length() == 0  || " ".equals(str))
-			return true;
-		return false;
+		return (str == null || str.length() == 0  || " ".equals(str))?true:false;
 	}
 
 	 /**
@@ -54,9 +51,7 @@ public class ValidateData {
 	 * @return
 	 */
 	public static boolean isEmpty(int n){
-		 if(n==0) 
-			 return true;
-		 return false;
+		return (n==0)?true:false;
 	 }
 	/**
 	 * Ham kiem tra du lieu trong
@@ -64,9 +59,7 @@ public class ValidateData {
 	 * @return
 	 */
 	public static boolean isEmpty(float n) {
-		if (n == 0)
-			return true;
-		return false;
+		return (n==0)?true:false;
 	}
 
 	/**
@@ -78,9 +71,7 @@ public class ValidateData {
 	public static boolean isAllNumber(String str) {
 		str = chuanHoa(str);
 		String regex = "[0-9]+";
-		if (str.matches(regex))
-			return true;
-		return false;
+		return (str.matches(regex))?true:false;
 	}
 
 	 /**
@@ -89,9 +80,7 @@ public class ValidateData {
 	 * @return
 	 */
 	public static boolean isNumberOnly(int s){
-		 if(s>0) 
-			 return true;
-		 return false;
+		 return (s>0)?true:false;
 	 }
 	
 	/**
@@ -100,28 +89,8 @@ public class ValidateData {
 	 * @return
 	 */
 	public static boolean isFloatNumber(float s){
-		 if(s>0) 
-			 return true;
-		 return false;
+		return (s>0)?true:false;
 	 }
-	
-	/**
-	 * @param s
-	 * @return
-	 */
-//	public static boolean isNumberOnly(String s) {
-//		try {
-//			int d = Integer.parseInt(s);
-//			// or Integer.parseInt(text), etc.
-//			// OK, valid number.
-//			if (d != 0)
-//				return true;
-//			return false;
-//		} catch (NumberFormatException nfe) {
-//			// Not a number.
-//			return false;
-//		}
-//	}
 
 	/**
 	 * Ham kiem tra so ghe > 500
@@ -129,9 +98,7 @@ public class ValidateData {
 	 * @return
 	 */
 	public static boolean isMoreThan500Seats(int n) {
-		if (n > 500)
-			return true;
-		return false;
+		return (n > 500)?true:false;
 	}
 
 	/**
@@ -140,9 +107,7 @@ public class ValidateData {
 	 * @return
 	 */
 	public static boolean isNegative(int n) {
-		if (n < 0)
-			return true;
-		return false;
+		return (n < 0)?true:false;
 	}
 
 	/**
@@ -151,9 +116,7 @@ public class ValidateData {
 	 * @return
 	 */
 	public static boolean isNegative(float n) {
-		if (n < 0)
-			return true;
-		return false;
+		return (n < 0)?true:false;
 	}
 	
 	/**
@@ -173,10 +136,7 @@ public class ValidateData {
 	 */
 	public static boolean isSpecialCharacters(String str) {
 		str = chuanHoa(str);
-		System.out.println("s1="+str);
 		String regex = ("[0-9a-zA-Z\\s]*");
-		//String regex = ("[\\W]+");
-		if (str.matches(regex)) return false;
-		return true;
+		return (str.matches(regex))?false:true;
 	}
 }

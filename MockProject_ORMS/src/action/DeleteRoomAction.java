@@ -3,8 +3,6 @@
  */
 package action;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,7 +12,6 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import form.RoomForm;
-import model.bean.Room;
 import model.bo.RoomBO;
 
 /**
