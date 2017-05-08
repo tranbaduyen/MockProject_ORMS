@@ -95,10 +95,10 @@
 				                <td>
 				                	<bean:define id="roomID" name="ro" property="roomID"></bean:define>
 				                	<html:link action="/update-room?roomID=${roomID}">
-				                		<span class="glyphicon glyphicon-edit"></span>
+				                		<span  class="glyphicon glyphicon-edit iconEdit"></span>
 				                	</html:link>
 				                	<html:link action="/delete-room?roomID=${roomID}" style="margin-left: 30px;" onclick="return confirm('This record will be deleted. Are you sure?');">
-				                		<span class="glyphicon glyphicon-remove"></span>
+				                		<span  class="glyphicon glyphicon-remove iconDelete"></span>
 				                	</html:link>
 				                </td>
 			            	</tr>
@@ -141,6 +141,16 @@
 		});
 	</script>
 	<script type="text/javascript">
+		$(".iconEdit").hover(function() {
+	        $(this).css('cursor','pointer').attr('title', 'Edit Room');
+	    }, function() {
+	        $(this).css('cursor','auto');
+	    });
+		$(".iconDelete").hover(function() {
+	        $(this).css('cursor','pointer').attr('title', 'Delete Room');
+	    }, function() {
+	        $(this).css('cursor','auto');
+	    });
 		var activeCP = $("#activeCP").text();
 		$("."+activeCP+"").addClass('active');
 		$("."+activeCP+"").css('background-color','#337ab7');

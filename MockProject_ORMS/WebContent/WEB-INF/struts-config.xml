@@ -10,22 +10,26 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 		
 		<action input="/viewAllRoom.jsp" name="roomManagementForm"
 			path="/room-list" scope="request" type="action.RoomManagementAction">
+			<forward name="error" path="/error500.jsp" />
 			<forward name="dsRoom" path="/viewAllRoom.jsp" />
 		</action>
 		<action input="/createNewRoom.jsp" name="roomForm"
 			path="/create-room" scope="request" type="action.CreateNewRoomAction">
+			<forward name="error" path="/error500.jsp" />
 			<forward name="create" path="/createNewRoom.jsp" />
 			<forward name="createError" path="/createNewRoom.jsp" />
 			<forward name="createSuccess" path="/room-list.do"/>
 		</action>
 		<action input="/updateRoom.jsp" name="roomForm"
 			path="/update-room" scope="request" type="action.UpdateRoomAction">
+			<forward name="error" path="/error500.jsp" />
 			<forward name="update" path="/updateRoom.jsp" />
 			<forward name="updateError" path="/updateRoom.jsp" />
 			<forward name="updateSuccess" path="/room-list.do"  />
 		</action>
 		<action input="/viewAllRoom.jsp" name="roomForm"
 			path="/delete-room" scope="request" type="action.DeleteRoomAction">
+			<forward name="error" path="/error500.jsp" />
 			<forward name="delete" path="/viewAllRoom.jsp" />
 			<forward name="deleteSuccess" path="/room-list.do"  />
 		</action>

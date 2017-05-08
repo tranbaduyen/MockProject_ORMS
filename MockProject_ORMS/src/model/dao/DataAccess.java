@@ -28,16 +28,17 @@ public class DataAccess {
 	 * Ham ket noi database
 	 * 
 	 * @return conn
+	 * @throws Exception 
 	 */
-	public Connection getConnect() {
+	public Connection getConnect() throws Exception {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			conn = DriverManager
-					.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ORMS;user=sa;password=12345678;");
+					.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ORMS;user=sa;password=abc@1234;");
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			throw new Exception("Error occur: "+ e.getMessage());
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new Exception("Error occur: "+ e.getMessage());
 		}
 		return conn;
 	}

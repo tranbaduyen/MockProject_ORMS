@@ -13,6 +13,7 @@ import org.apache.struts.action.ActionMapping;
 
 import form.RoomForm;
 import model.bo.RoomBO;
+import model.dao.DataAccess;
 
 /**
  * DeleteRoomAction.java
@@ -37,10 +38,18 @@ public class DeleteRoomAction extends Action {
 		response.setCharacterEncoding("UTF-8");
 
 		RoomForm roomForm = (RoomForm) form;
-		RoomBO roomBO = new RoomBO();
-		int roomID = roomForm.getRoomID();
-		roomBO.deleteRoom(roomID);
+		RoomBO roomBO ;
+		roomBO = new RoomBO();
+		DataAccess da;
+		da = new DataAccess();
+		if(da.getConnect()==null){
+			return mapping.findForward("error");
+		}
+		else{
+			int roomID = roomForm.getRoomID();
+			roomBO.deleteRoom(roomID);
 
-		return mapping.findForward("deleteSuccess");
+			return mapping.findForward("deleteSuccess");
+		}
 	}
 }

@@ -24,13 +24,14 @@ import model.dao.RoomDAO;
  */
 public class RoomBO {
 	RoomDAO roomDAO = new RoomDAO();
-
+	private int noOfRecords = 0;
 	/**
 	 * Ham lay danh sach tat ca cac Room
 	 * 
-	 * @return
+	 * @return roomDAO.getListRoom()
+	 * @throws Exception 
 	 */
-	public ArrayList<Room> getListRoom() {
+	public ArrayList<Room> getListRoom() throws Exception {
 		return roomDAO.getListRoom();
 	}
 
@@ -39,9 +40,10 @@ public class RoomBO {
 	 * 
 	 * @param offset
 	 * @param noOfRecords
-	 * @return
+	 * @return roomDAO.getListRoom(offset, noOfRecords)
+	 * @throws Exception 
 	 */
-	public ArrayList<Room> getListRoom(int offset, int noOfRecords) {
+	public ArrayList<Room> getListRoom(int offset, int noOfRecords) throws Exception {
 		return roomDAO.getListRoom(offset, noOfRecords);
 	}
 
@@ -49,9 +51,10 @@ public class RoomBO {
 	 * Ham lay thong tin chi tiet cua 1 Room
 	 * 
 	 * @param roomID
-	 * @return
+	 * @return roomDAO.getRoomDetail(roomID)
+	 * @throws Exception 
 	 */
-	public Room getRoomDetail(int roomID) {
+	public Room getRoomDetail(int roomID) throws Exception {
 		return roomDAO.getRoomDetail(roomID);
 	}
 
@@ -64,9 +67,10 @@ public class RoomBO {
 	 * @param priceHour
 	 * @param priceFull
 	 * @param status
+	 * @throws Exception 
 	 */
 	public void addRoom(String roomName, int roomSeats, String description, float priceHour, float priceFull,
-			int status) {
+			int status) throws Exception {
 		// TODO Auto-generated method stub
 		roomDAO.addRoom(roomName, roomSeats, description, priceHour, priceFull, status);
 	}
@@ -81,9 +85,10 @@ public class RoomBO {
 	 * @param priceHour
 	 * @param priceFull
 	 * @param status
+	 * @throws Exception 
 	 */
 	public void updateRoom(int roomID, String roomName, int roomSeats, String description, float priceHour,
-			float priceFull, int status) {
+			float priceFull, int status) throws Exception {
 		// TODO Auto-generated method stub
 		roomDAO.updateRoom(roomID, roomName, roomSeats, description, priceHour, priceFull, status);
 	}
@@ -92,8 +97,9 @@ public class RoomBO {
 	 * Ham xoa 1 Room tu database
 	 * 
 	 * @param roomID
+	 * @throws Exception 
 	 */
-	public void deleteRoom(int roomID) {
+	public void deleteRoom(int roomID) throws Exception {
 		roomDAO.deleteRoom(roomID);
 	}
 
@@ -102,8 +108,30 @@ public class RoomBO {
 	 * 
 	 * @param roomName
 	 * @return true neu roomName ton tai, false neu roomName khong ton tai
+	 * @throws Exception 
 	 */
-	public boolean isDuplicateRoomName(String roomName) {
+	public boolean isDuplicateRoomName(String roomName) throws Exception {
 		return roomDAO.isDuplicateRoomName(roomName);
 	}
+
+	/**
+	 * Ham lay noOfRecords
+	 * 
+	 * @return noOfRecords
+	 */
+	public int getNoOfRecords() {
+		return noOfRecords;
+	}
+
+	/**
+	 * Ham gan gia tri cho noOfRecords
+	 * 
+	 * @param noOfRecords
+	 *            the noOfRecords to set
+	 */
+	public void setNoOfRecords(int noOfRecords) {
+		this.noOfRecords = noOfRecords;
+	}
+	
+	
 }

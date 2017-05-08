@@ -24,6 +24,10 @@ import model.bean.Room;
  * 03-05-2017 		DuyenTB 	Create
  */
 public class RoomManagementForm extends ActionForm {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Room> listRoom;
 	private int noOfPages;
 	private int currentPage;

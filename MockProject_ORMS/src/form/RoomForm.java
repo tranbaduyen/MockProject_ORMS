@@ -25,6 +25,10 @@ import org.apache.struts.action.ActionMapping;
  * 03-05-2017 		DuyenTB 	Create
  */
 public class RoomForm extends ActionForm {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int roomID;
 	private String roomName;
 	private int roomSeats;
