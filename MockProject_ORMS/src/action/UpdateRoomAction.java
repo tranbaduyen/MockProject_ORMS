@@ -118,7 +118,7 @@ public class UpdateRoomAction extends Action {
 				saveErrors(request, actionErrors);
 				
 				if (actionErrors.size() > 0) {
-					return mapping.findForward("createError");
+					return mapping.findForward("updateError");
 				}
 			}
 			// Update Room khi bam nut Save
@@ -130,7 +130,6 @@ public class UpdateRoomAction extends Action {
 				float priceHour = roomForm.getPriceHour();
 				float priceFull = roomForm.getPriceFull();
 				int status = 0;
-	
 				roomBO.updateRoom(roomID, roomName, roomSeats, description, priceHour, priceFull, status);
 				return mapping.findForward("updateSuccess");
 			} else { // Hien thi trang Update Room

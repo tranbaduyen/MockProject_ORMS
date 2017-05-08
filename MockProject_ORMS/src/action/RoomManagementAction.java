@@ -62,6 +62,7 @@ public class RoomManagementAction extends Action {
 			listRoom = roomBO.getListRoom((page - 1) * recordsPerPage, recordsPerPage * page);
 	
 			noOfRecords = roomBO.getNoOfRecords();
+			System.out.println(noOfRecords);
 			noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 			for (int i = 1; i <= noOfPages; i++) {
 				listPage.add(i);

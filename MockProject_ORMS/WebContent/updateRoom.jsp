@@ -46,40 +46,46 @@
 		<div class="col-sm-6" >
 			<html:hidden property="roomID" styleClass="form-control"></html:hidden>
 			<div class="row form-group">
-			        <label class="col-sm-3 require">RoomName</label>
-			        <div class="col-sm-8">
-			        	<html:text property="roomName" styleClass="form-control" maxlength="50"></html:text><span style="color:red;"><html:errors  property="roomNameError"/></span>
-			        	
-			        </div>
-		        </div>
-		        <div class="row form-group ">
-		            <label class="col-sm-3 require">RoomSeats</label>
-		            <div class="col-sm-8">
-						<html:text property="roomSeats" styleClass="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></html:text><span style="color:red; display: inline;"><html:errors  property="roomSeatsError"/></span>
+			    <label class="col-sm-3 require">RoomName</label>
+			    <div class="col-sm-8">
+			        <html:text styleId="txtRoomName" property="roomName" styleClass="form-control ui-dform-text" maxlength="50" errorStyleClass="errorT"
+                errorKey="org.apache.struts.action.ERROR" tabindex="1" onfocus=""></html:text>
+			        <span style="color:red;" ><html:errors  property="roomNameError" /></span>
+			   	</div>
+		    </div>
+		    <div class="row form-group ">
+		       	<label class="col-sm-3 require">RoomSeats</label>
+		        <div class="col-sm-8">
+					<html:text styleId="txtRoomSeats" property="roomSeats" styleClass="form-control ui-dform-text" errorStyleClass="errorT"
+                errorKey="org.apache.struts.action.ERROR" tabindex="2">
+					</html:text><span style="color:red;"><html:errors  property="roomSeatsError"/></span>
 						
-		            </div>
 		        </div>
-		        <div class="row form-group">
-		            <label class="col-sm-3 require">Description</label>
-		            <div class="col-sm-8">
-		            	<html:textarea property="description" styleClass="form-control" rows="3"></html:textarea><span style="color:red;display: inline;"><html:errors  property="descriptionError"/></span>
-		            	
-		            </div>	            
+		    </div>
+		    <div class="row form-group">
+		        <label class="col-sm-3 require">Description</label>
+		        <div class="col-sm-8">
+		            <html:textarea styleId="txtDescription" property="description" styleClass="form-control ui-dform-text" rows="2" errorStyleClass="errorT"
+                errorKey="org.apache.struts.action.ERROR" tabindex="3"></html:textarea>
+		            <span style="color:red;"><html:errors  property="descriptionError"/></span>
+		        </div>	            
+		    </div>
+		    <div class="row form-group">
+		        <label class="col-sm-3 require">PriceHour</label>
+		        <div class="col-sm-8">
+					<html:text styleId="txtPriceHour" property="priceHour" styleClass="form-control ui-dform-text" errorStyleClass="errorT"
+                errorKey="org.apache.struts.action.ERROR" tabindex="4"></html:text>
+					<span style="color:red;"><html:errors  property="priceHourError"/></span>
+		       	</div>
+		    </div>
+			<div class="row form-group">
+		        <label class="col-sm-3 require">PriceFull</label>
+		        <div class="col-sm-8" >
+					<html:text styleId="txtPriceFull" property="priceFull" styleClass="form-control ui-dform-text" errorStyleClass="errorT"
+                errorKey="org.apache.struts.action.ERROR" tabindex="5"></html:text>
+					<span style="color:red;"><html:errors  property="priceFullError"/></span>
 		        </div>
-		        <div class="row form-group">
-		            <label class="col-sm-3 require">PriceHour</label>
-		            <div class="col-sm-8">
-						<html:text property="priceHour" styleClass="form-control" onkeypress="return isFloatNumber(this,event)"></html:text><span style="color:red;display: inline;"><html:errors  property="priceHourError"/></span>
-		            	
-		            </div>
-		        </div>
-				<div class="row form-group">
-		            <label class="col-sm-3 require">PriceFull</label>
-		            <div class="col-sm-8">
-						<html:text property="priceFull" styleClass="form-control" onkeypress="return isFloatNumber(this,event)"></html:text><span style="color:red;display: inline;"><html:errors  property="priceFullError"/></span>
-		            	
-		            </div>
-		        </div>
+		    </div>
 		</div>	           
         <div class="row form-group" style="margin-top:10px;">
             <div class="col-sm-12">
@@ -88,7 +94,7 @@
 	            	<div class="col-sm-3">
 	            	</div>
 	            	<div class="col-sm-8" style="padding-left:0px;padding-bottom:15px;">
-	            		<html:submit style="padding:6px 17px" styleClass="btn btn-danger" property="submit" value="Save"></html:submit>
+	            		<html:submit styleId="btnSubmit" style="padding:6px 17px" styleClass="btn btn-danger" property="submit" value="Save"></html:submit>
 		            	<button class="btn btn-primary" style="padding:6px 17px" onclick="history.go(-1);">Cancel</button>
 	            	</div>	            	
 	            </div>            	
@@ -99,4 +105,34 @@
     <br>
 </div>
 </body>
+<script >
+$(function() {
+	  $("#txtRoomName").focus();
+});
+</script>
+<script>
+jQuery.extend(jQuery.expr[':'], {
+    focusable: function (el, index, selector) {
+        return $(el).is('a, button, :input, [tabindex]');
+    }
+});
+
+$(document).on('keydown', ':focusable', function (e) {
+    if (e.which == 13) {
+        e.preventDefault();
+        // Get all focusable elements on the page
+        var $canfocus = $(':focusable');
+        var index = $canfocus.index(this) + 1;
+        if (index >= $canfocus.length) index = 0;
+        $canfocus.eq(index).focus();
+    }
+});
+</script>
+<script language='javascript' type='text/javascript'>
+function setFocus()
+{
+	$('#createForm').submit();
+}
+</script>
 </html>
+

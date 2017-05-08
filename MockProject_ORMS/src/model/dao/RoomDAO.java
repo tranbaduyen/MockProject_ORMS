@@ -91,6 +91,7 @@ public class RoomDAO {
 			list = new ArrayList<Room>();
 			room = new Room();
 			while (rs.next()) {
+				room = new Room();
 				room.setRoomID(rs.getInt("ROOMID"));
 				room.setRoomName(rs.getString("ROOMNAME"));
 				room.setRoomSeats(rs.getInt("ROOMSEATS"));
@@ -134,9 +135,9 @@ public class RoomDAO {
 		try {
 			stmt = connection.createStatement();
 			rs = stmt.executeQuery(sql);
-			
+			room = new Room();
 			while (rs.next()) {
-				room = new Room();
+				
 				room.setRoomID(rs.getInt("ROOMID"));
 				room.setRoomName(rs.getString("ROOMNAME"));
 				room.setRoomSeats(rs.getInt("ROOMSEATS"));
@@ -205,7 +206,7 @@ public class RoomDAO {
 	 * @throws Exception 
 	 */
 	public void updateRoom(int roomID, String roomName, int roomSeats, String description, float priceHour,
-			float priceFull, int status) throws Exception {
+			float priceFull, int status) throws Exception{
 		connection = da.getConnect();
 		String sql = String.format("UPDATE ROOM "
 				+ " SET ROOMNAME = N'%s', ROOMSEATS = %s, DESCRIPTION = N'%s', PRICEHOUR = %s, PRICEFULL = %s, STATUS = 0 "

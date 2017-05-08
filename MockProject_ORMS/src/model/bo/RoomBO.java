@@ -24,7 +24,6 @@ import model.dao.RoomDAO;
  */
 public class RoomBO {
 	RoomDAO roomDAO = new RoomDAO();
-	private int noOfRecords = 0;
 	/**
 	 * Ham lay danh sach tat ca cac Room
 	 * 
@@ -88,7 +87,7 @@ public class RoomBO {
 	 * @throws Exception 
 	 */
 	public void updateRoom(int roomID, String roomName, int roomSeats, String description, float priceHour,
-			float priceFull, int status) throws Exception {
+			float priceFull, int status) throws Exception{
 		// TODO Auto-generated method stub
 		roomDAO.updateRoom(roomID, roomName, roomSeats, description, priceHour, priceFull, status);
 	}
@@ -117,21 +116,11 @@ public class RoomBO {
 	/**
 	 * Ham lay noOfRecords
 	 * 
-	 * @return noOfRecords
+	 * @return roomDAO.getNoOfRecords()
 	 */
 	public int getNoOfRecords() {
-		return noOfRecords;
+		return roomDAO.getNoOfRecords();
 	}
 
-	/**
-	 * Ham gan gia tri cho noOfRecords
-	 * 
-	 * @param noOfRecords
-	 *            the noOfRecords to set
-	 */
-	public void setNoOfRecords(int noOfRecords) {
-		this.noOfRecords = noOfRecords;
-	}
-	
 	
 }

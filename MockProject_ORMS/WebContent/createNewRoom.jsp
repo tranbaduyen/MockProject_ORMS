@@ -47,8 +47,8 @@
 				<div class="row form-group">
 			        <label class="col-sm-3 require">RoomName</label>
 			        <div class="col-sm-8">
-			        	<html:text styleId="txtRoomName" property="roomName" styleClass="form-control" maxlength="50" errorStyleClass="errorT"
-                errorKey="org.apache.struts.action.ERROR" tabindex="1" onfocus=""></html:text>
+			        	<html:text styleId="txtRoomName" property="roomName" styleClass="form-control ui-dform-text" maxlength="50" errorStyleClass="errorT"
+                errorKey="org.apache.struts.action.ERROR" tabindex="1" onfocus="" maxlength="50" ></html:text>
 			        	<span style="color:red;" ><html:errors  property="roomNameError" /></span>
 			        	
 			        </div>
@@ -56,8 +56,8 @@
 		        <div class="row form-group ">
 		            <label class="col-sm-3 require">RoomSeats</label>
 		            <div class="col-sm-8">
-						<html:text styleId="txtRoomSeats" property="roomSeats" styleClass="form-control" errorStyleClass="errorT"
-                errorKey="org.apache.struts.action.ERROR" tabindex="2">
+						<html:text styleId="txtRoomSeats" property="roomSeats" styleClass="form-control ui-dform-text" errorStyleClass="errorT"
+                errorKey="org.apache.struts.action.ERROR" tabindex="2" maxlength="4">
 						</html:text><span style="color:red;"><html:errors  property="roomSeatsError"/></span>
 						
 		            </div>
@@ -65,8 +65,8 @@
 		        <div class="row form-group">
 		            <label class="col-sm-3 require">Description</label>
 		            <div class="col-sm-8">
-		            	<html:textarea styleId="txtDescription" property="description" styleClass="form-control" rows="2" errorStyleClass="errorT"
-                errorKey="org.apache.struts.action.ERROR" tabindex="3"></html:textarea>
+		            	<html:textarea styleId="txtDescription" property="description" styleClass="form-control ui-dform-text" rows="2" errorStyleClass="errorT"
+                errorKey="org.apache.struts.action.ERROR" tabindex="3" maxlength="100"></html:textarea>
 		            	<span style="color:red;"><html:errors  property="descriptionError"/></span>
 		            	
 		            </div>	            
@@ -74,7 +74,7 @@
 		        <div class="row form-group">
 		            <label class="col-sm-3 require">PriceHour</label>
 		            <div class="col-sm-8">
-						<html:text styleId="txtPriceHour" property="priceHour" styleClass="form-control" errorStyleClass="errorT"
+						<html:text styleId="txtPriceHour" property="priceHour" styleClass="form-control ui-dform-text" errorStyleClass="errorT"
                 errorKey="org.apache.struts.action.ERROR" tabindex="4"></html:text>
 						<span style="color:red;"><html:errors  property="priceHourError"/></span>
 		            	
@@ -83,7 +83,7 @@
 				<div class="row form-group">
 		            <label class="col-sm-3 require">PriceFull</label>
 		            <div class="col-sm-8" >
-						<html:text styleId="txtPriceFull" property="priceFull" styleClass="form-control" errorStyleClass="errorT"
+						<html:text styleId="txtPriceFull" property="priceFull" styleClass="form-control ui-dform-text" errorStyleClass="errorT"
                 errorKey="org.apache.struts.action.ERROR" tabindex="5"></html:text>
 						<span style="color:red;"><html:errors  property="priceFullError"/></span>
 		            	
@@ -98,7 +98,7 @@
 	            	<div class="col-sm-3">
 	            	</div>
 	            	<div class="col-sm-8" style="padding-left:0px;padding-bottom:15px;">
-	            		<html:submit styleId="btnSubmit" style="padding:6px 17px" styleClass="btn btn-danger" property="submit" value="Save"></html:submit>
+	            		<html:submit styleId="btnSubmit" style="padding:6px 17px" styleClass="btn btn-danger" property="submit" value="Save" onfocus="setFocus();"></html:submit>
 		            	<button class="btn btn-primary" style="padding:6px 17px" onclick="history.go(-1);">Cancel</button>
 	            	</div>	            	
 	            </div>            	
@@ -110,14 +110,34 @@
     <br>
 </div>
 </body>
-</html>
 <script >
-window.onload = function() {
-	document.getElementById("txtRoomName").focus();
-	document.getElementById("txtRoomSeats").focus();
-	document.getElementById("txtDescription").focus();
-	document.getElementById("txtPriceHour").focus();
-	document.getElementById("txtPriceFull").focus();
-	document.getElementById("btnSubmit").focus();
+$(function() {
+	  $("#txtRoomName").focus();
+});
+</script>
+<script>
+jQuery.extend(jQuery.expr[':'], {
+    focusable: function (el, index, selector) {
+        return $(el).is('a, button, :input, [tabindex]');
+    }
+});
+
+$(document).on('keydown', ':focusable', function (e) {
+    if (e.which == 13) {
+        e.preventDefault();
+        // Get all focusable elements on the page
+        var $canfocus = $(':focusable');
+        var index = $canfocus.index(this) + 1;
+        if (index >= $canfocus.length) index = 0;
+        $canfocus.eq(index).focus();
+    }
+});
+</script>
+<script language='javascript' type='text/javascript'>
+function setFocus()
+{
+	$('#createForm').submit();
 }
 </script>
+</html>
+
