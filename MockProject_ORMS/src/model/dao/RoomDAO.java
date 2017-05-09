@@ -70,8 +70,8 @@ public class RoomDAO {
 			if (rs.next())
 				this.noOfRecords = rs.getInt("num");
 		}
-		catch (SQLException e) {
-			throw new SQLException("Error occur: "+ e.getMessage());
+		catch (Exception e) {
+			throw new Exception("Error occur: "+ e.getMessage());
 		}
 		finally {
 			try {
@@ -79,9 +79,10 @@ public class RoomDAO {
 					stmt.close();
 				if (connection != null)
 					connection.close();
-			} catch (SQLException e) {;}
+			} catch (SQLException e) {
+				throw new SQLException("Error occur: "+ e.getMessage());
+			}
 		}
-
 		return list;
 	}
 
@@ -113,14 +114,18 @@ public class RoomDAO {
 				room.setStatus(rs.getInt("STATUS"));
 			}
 		}
-		catch (SQLException e) {;}
+		catch (Exception e) {
+			throw new Exception("Error occur: "+ e.getMessage());
+		}
 		finally {
 			try {
 				if (stmt != null)
 					stmt.close();
 				if (connection != null)
 					connection.close();
-			} catch (SQLException e) {;}
+			} catch (SQLException e) {
+				throw new SQLException("Error occur: "+ e.getMessage());
+			}
 		}
 		return room;
 	}
@@ -148,14 +153,18 @@ public class RoomDAO {
 			stmt = connection.createStatement();
 			stmt.executeUpdate(sql);
 		}
-		catch (SQLException e) {;}
+		catch (Exception e) {
+			throw new Exception("Error occur: "+ e.getMessage());
+		}
 		finally {
 			try {
 				if (stmt != null)
 					stmt.close();
 				if (connection != null)
 					connection.close();
-			} catch (SQLException e) {;}
+			} catch (SQLException e) {
+				throw new SQLException("Error occur: "+ e.getMessage());
+			}
 		}
 	}
 
@@ -183,7 +192,7 @@ public class RoomDAO {
 			stmt.executeUpdate(sql);
 		}
 		catch (SQLException e) {
-			e.printStackTrace();
+			throw new Exception("Error occur: "+ e.getMessage());
 		}
 		finally {
 			try {
@@ -192,7 +201,7 @@ public class RoomDAO {
 				if (connection != null)
 					connection.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new SQLException("Error occur: "+ e.getMessage());
 			}
 		}
 	}
@@ -211,8 +220,8 @@ public class RoomDAO {
 			stmt = connection.createStatement();
 			stmt.executeUpdate(sql);
 		}
-		catch (SQLException e) {
-			e.printStackTrace();
+		catch (Exception e) {
+			throw new Exception("Error occur: "+ e.getMessage());
 		}
 		finally {
 			try {
@@ -221,7 +230,7 @@ public class RoomDAO {
 				if (connection != null)
 					connection.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new SQLException("Error occur: "+ e.getMessage());
 			}
 		}
 	}
@@ -245,8 +254,8 @@ public class RoomDAO {
 				num = rs.getInt("num");
 			}
 		}
-		catch (SQLException e) {
-			e.printStackTrace();
+		catch (Exception e) {
+			throw new Exception("Error occur: "+ e.getMessage());
 		}
 		finally {
 			try {
@@ -255,7 +264,7 @@ public class RoomDAO {
 				if (connection != null)
 					connection.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new SQLException("Error occur: "+ e.getMessage());
 			}
 		}
 		

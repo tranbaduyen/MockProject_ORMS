@@ -130,10 +130,21 @@ public class UpdateRoomAction extends Action {
 				float priceHour = roomForm.getPriceHour();
 				float priceFull = roomForm.getPriceFull();
 				int status = 0;
-				roomBO.updateRoom(roomID, roomName, roomSeats, description, priceHour, priceFull, status);
+				try{
+					roomBO.updateRoom(roomID, roomName, roomSeats, description, priceHour, priceFull, status);
+				}
+				catch (Exception e) {
+					return mapping.findForward("error");
+				}
 				return mapping.findForward("updateSuccess");
 			} else { // Hien thi trang Update Room
-				Room room = roomBO.getRoomDetail(roomID);
+				Room room;
+				try {
+					room = roomBO.getRoomDetail(roomID);
+				}
+				catch (Exception e) {
+					return mapping.findForward("error");
+				}
 				roomForm.setRoomName(room.getRoomName());
 				roomForm.setRoomSeats(room.getRoomSeats());
 				roomForm.setDescription(room.getDescription());

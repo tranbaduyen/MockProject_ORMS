@@ -49,8 +49,7 @@
 			        <div class="col-sm-8">
 			        	<html:text styleId="txtRoomName" property="roomName" styleClass="form-control ui-dform-text" maxlength="50" errorStyleClass="errorT"
                 errorKey="org.apache.struts.action.ERROR" tabindex="1" onfocus="" ></html:text>
-			        	<span style="color:red;" ><html:errors  property="roomNameError" /></span>
-			        	
+			        	<span style="color:red;" ><html:errors property="roomNameError" /></span>
 			        </div>
 		        </div>
 		        <div class="row form-group ">
@@ -59,7 +58,6 @@
 						<html:text styleId="txtRoomSeats" property="roomSeats" styleClass="form-control ui-dform-text" errorStyleClass="errorT"
                 errorKey="org.apache.struts.action.ERROR" tabindex="2" maxlength="4">
 						</html:text><span style="color:red;"><html:errors  property="roomSeatsError"/></span>
-						
 		            </div>
 		        </div>
 		        <div class="row form-group">
@@ -98,8 +96,8 @@
 	            	<div class="col-sm-3">
 	            	</div>
 	            	<div class="col-sm-8" style="padding-left:0px;padding-bottom:15px;">
-	            		<html:submit styleId="btnSubmit" style="padding:6px 17px" styleClass="btn btn-danger" property="submit" value="Save" onfocus="setFocus();"></html:submit>
-		            	<button class="btn btn-primary" style="padding:6px 17px" onclick="history.go(-1);">Cancel</button>
+	            		<html:submit styleId="btnSubmit" style="padding:6px 17px" styleClass="btn btn-danger" tabindex="6" property="submit" value="Save" onfocus="setFocus();"></html:submit>
+		            	<button class="btn btn-primary" style="padding:6px 17px" tabindex="7" onclick="history.go(-1);">Cancel</button>
 	            	</div>	            	
 	            </div>            	
             </div>
@@ -113,6 +111,7 @@
 <script >
 $(function() {
 	  $("#txtRoomName").focus();
+	  
 });
 </script>
 <script>

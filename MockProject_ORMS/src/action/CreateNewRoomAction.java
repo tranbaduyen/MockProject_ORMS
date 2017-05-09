@@ -79,17 +79,17 @@ public class CreateNewRoomAction extends Action {
 					actionErrors.add("roomNameError", new ActionMessage("error.roomName.kituDB"));
 				}
 				
-				if (!ValidateData.isNumberOnly(roomForm.getRoomSeats())) {
-					actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.chuoi"));
-				}
 				if (ValidateData.isEmpty(roomForm.getRoomSeats())) {
 					actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.trong"));
 				}
-				if (ValidateData.isMoreThan500Seats(roomForm.getRoomSeats())) {
-					actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.more500Seats"));
+				if (!ValidateData.isNumberOnly(roomForm.getRoomSeats())) {
+					actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.chuoi"));
 				}
 				if (ValidateData.isNegative(roomForm.getRoomSeats())) {
 					actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.negative"));
+				}
+				if (ValidateData.isMoreThan500Seats(roomForm.getRoomSeats())) {
+					actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.more500Seats"));
 				}
 				
 				if (ValidateData.isEmpty(roomForm.getDescription())) {
@@ -102,21 +102,21 @@ public class CreateNewRoomAction extends Action {
 				if (ValidateData.isEmpty(roomForm.getPriceHour())) {
 					actionErrors.add("priceHourError", new ActionMessage("error.priceHour.trong"));
 				}
-				if (ValidateData.isNegative(roomForm.getPriceHour())) {
-					actionErrors.add("priceHourError", new ActionMessage("error.priceHour.negative"));
-				}
 				if (!ValidateData.isFloatNumber(roomForm.getPriceHour())) {
 					actionErrors.add("priceHourError", new ActionMessage("error.priceHour.chuoi"));
+				}
+				if (ValidateData.isNegative(roomForm.getPriceHour())) {
+					actionErrors.add("priceHourError", new ActionMessage("error.priceHour.negative"));
 				}
 				
 				if (ValidateData.isEmpty(roomForm.getPriceFull())) {
 					actionErrors.add("priceFullError", new ActionMessage("error.priceFull.trong"));
 				}
-				if (ValidateData.isNegative(roomForm.getPriceFull())) {
-					actionErrors.add("priceFullError", new ActionMessage("error.priceFull.negative"));
-				}
 				if (!ValidateData.isFloatNumber(roomForm.getPriceFull())) {
 					actionErrors.add("priceFullError", new ActionMessage("error.priceFull.chuoi"));
+				}
+				if (ValidateData.isNegative(roomForm.getPriceFull())) {
+					actionErrors.add("priceFullError", new ActionMessage("error.priceFull.negative"));
 				}
 				
 				saveErrors(request, actionErrors);
@@ -134,8 +134,12 @@ public class CreateNewRoomAction extends Action {
 				float priceHour = roomForm.getPriceHour();
 				float priceFull = roomForm.getPriceFull();
 				int status = 0;
-	
-				roomBO.addRoom(roomName, roomSeats, description, priceHour, priceFull, status);
+				try {
+					roomBO.addRoom(roomName, roomSeats, description, priceHour, priceFull, status);
+				}
+				catch (Exception e) {
+					return mapping.findForward("error");
+				}
 				return mapping.findForward("createSuccess");
 			} else { // chuyen sang trang Create New Room
 				return mapping.findForward("create");

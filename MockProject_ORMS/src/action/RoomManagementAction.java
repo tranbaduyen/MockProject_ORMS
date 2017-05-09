@@ -41,12 +41,12 @@ public class RoomManagementAction extends Action {
 		response.setCharacterEncoding("UTF-8");
 
 		RoomManagementForm roomManagementForm = (RoomManagementForm) form;
-		int page = 1;
+		int currentPage = 1;
 		int recordsPerPage = 10;
 		int noOfRecords = 0;
 		int noOfPages = 0;
 		if (request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
+			currentPage = Integer.parseInt(request.getParameter("page"));
 		}
 		ArrayList<Integer> listPage;
 		listPage = new ArrayList<Integer>();
@@ -54,7 +54,7 @@ public class RoomManagementAction extends Action {
 		RoomBO roomBO;
 		roomBO = new RoomBO();
 		try{
-			listRoom = roomBO.getListRoom((page - 1) * recordsPerPage, recordsPerPage * page);
+			listRoom = roomBO.getListRoom((currentPage - 1) * recordsPerPage, recordsPerPage * currentPage);
 			noOfRecords = roomBO.getNoOfRecords();
 		}
 		catch (Exception e) {
@@ -68,7 +68,7 @@ public class RoomManagementAction extends Action {
 		try {
 			roomManagementForm.setListRoom(listRoom);
 			roomManagementForm.setListPage(listPage);
-			roomManagementForm.setCurrentPage(page);
+			roomManagementForm.setCurrentPage(currentPage);
 			roomManagementForm.setNoOfPages(noOfPages);
 		} catch (NullPointerException npe) {
 			return mapping.findForward("error");

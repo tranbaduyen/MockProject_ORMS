@@ -80,16 +80,16 @@
 				                <td scope="row">
 				                	<bean:write name="ro" property="roomName"/>
 								</td>
-				                <td>
+				                <td align="right">
 				                	<bean:write name="ro" property="roomSeats"/>
 				                </td>
 				                <td>
 				                	<bean:write name="ro" property="description"/>
 								</td>
-				                <td>
+				                <td align="right">
 				                	<bean:write name="ro" property="priceHour"/>
 				                </td>
-				                <td>
+				                <td align="right">
 				                	<bean:write name="ro" property="priceFull"/>
 				                </td>
 				                <td>
