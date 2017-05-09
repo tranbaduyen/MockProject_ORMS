@@ -38,6 +38,7 @@ public class RoomForm extends ActionForm {
 	private String submit;
 	private String action;
 	private String notification;
+	private int errorFirst = 1;
 
 	/**
 	 * @return roomID
@@ -163,6 +164,24 @@ public class RoomForm extends ActionForm {
 	 */
 	public void setNotification(String notification) {
 		this.notification = notification;
+	}
+
+	/**
+	 * Ham get vi tri textbox co loi dau tien
+	 * 
+	 * @return the errorFirst
+	 */
+	public int getErrorFirst() {
+		return errorFirst;
+	}
+
+	/**
+	 * Ham set vi tri textbox co loi dau tien
+	 * 
+	 * @param errorFirst the errorFirst to set
+	 */
+	public void setErrorFirst(int errorFirst) {
+		this.errorFirst = errorFirst;
 	}
 
 	/*

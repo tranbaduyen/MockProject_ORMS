@@ -44,6 +44,9 @@
 	<html:form styleId="createForm" action="/create-room.do" method="post" style="background-color:#f1ddcb;">
 		<div class="row form-group">
 			<div class="col-sm-6" >
+				<bean:define id="errorFirst" name="roomForm" property="errorFirst"></bean:define>
+				<p><bean:write name="errorFirst"/></p>
+				<html:hidden styleId="errorFirst" property="errorFirst" styleClass="form-control"></html:hidden>
 				<div class="row form-group">
 			        <label class="col-sm-3 require">RoomName</label>
 			        <div class="col-sm-8">
@@ -111,6 +114,27 @@
 <script >
 $(function() {
 	  $("#txtRoomName").focus();
+	  var errorFirst = ${errorFirst};
+	  switch (errorFirst) {
+		case 1:
+			break;
+		case 2:
+			$("#txtRoomName").blur();
+			$("#txtRoomSeats").focus();
+			break;
+		case 3:
+			$("#txtRoomName").blur();
+			$("#txtDescription").focus();
+			break;
+		case 4:
+			$("#txtRoomName").blur();
+			$("#txtPriceHour").focus();
+			break;
+		case 5:
+			$("#txtRoomName").blur();
+			$("#txtPriceFull").focus();
+			break;
+		}
 	  
 });
 </script>
