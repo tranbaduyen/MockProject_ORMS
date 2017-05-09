@@ -48,7 +48,7 @@
 			        <label class="col-sm-3 require">RoomName</label>
 			        <div class="col-sm-8">
 			        	<html:text styleId="txtRoomName" property="roomName" styleClass="form-control ui-dform-text" maxlength="50" errorStyleClass="errorT"
-                errorKey="org.apache.struts.action.ERROR" tabindex="1" onfocus="" maxlength="50" ></html:text>
+                errorKey="org.apache.struts.action.ERROR" tabindex="1" onfocus="" ></html:text>
 			        	<span style="color:red;" ><html:errors  property="roomNameError" /></span>
 			        	
 			        </div>
@@ -66,7 +66,7 @@
 		            <label class="col-sm-3 require">Description</label>
 		            <div class="col-sm-8">
 		            	<html:textarea styleId="txtDescription" property="description" styleClass="form-control ui-dform-text" rows="2" errorStyleClass="errorT"
-                errorKey="org.apache.struts.action.ERROR" tabindex="3" maxlength="100"></html:textarea>
+                errorKey="org.apache.struts.action.ERROR" tabindex="3" ></html:textarea>
 		            	<span style="color:red;"><html:errors  property="descriptionError"/></span>
 		            	
 		            </div>	            

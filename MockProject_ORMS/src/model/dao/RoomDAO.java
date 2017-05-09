@@ -33,42 +33,6 @@ public class RoomDAO {
 	private int num = 0;
 
 	/**
-	 * Ham lay danh sach tat ca cac Room
-	 * 
-	 * @return list
-	 * @throws Exception 
-	 */
-	public ArrayList<Room> getListRoom() throws Exception {
-		connection = da.getConnect();
-		String sql = "SELECT RoomID, RoomName, RoomSeats, Description, PriceHour, PriceFull, Status FROM  ROOM ";
-		ResultSet rs = null;
-		try {
-			stmt = connection.createStatement();
-			rs = stmt.executeQuery(sql);
-		} catch (Exception e) {
-			throw new Exception("Error occur: "+ e.getMessage());
-		}
-
-		ArrayList<Room> list;
-		list = new ArrayList<Room>();
-		Room room;
-		try {
-			room = new Room();
-			while (rs.next()) {
-				room.setRoomID(rs.getInt("ROOMID"));
-				room.setRoomName(rs.getString("ROOMNAME"));
-				room.setRoomSeats(rs.getInt("ROOMSEATS"));
-				room.setDescription(rs.getString("Description"));
-				room.setPriceHour(rs.getFloat("PRICEHOUR"));
-				room.setPriceFull(rs.getFloat("PRICEFULL"));
-				room.setStatus(rs.getInt("STATUS"));
-				list.add(room);
-			}
-		} catch (SQLException e) {;}
-		return list;
-	}
-
-	/**
 	 * Ham lay danh sach Room tu offset den noOfrecords
 	 * 
 	 * @param offset
@@ -76,7 +40,7 @@ public class RoomDAO {
 	 * @return list
 	 * @throws Exception 
 	 */
-	public ArrayList<Room> getListRoom(int offset, int noOfRecords) throws Exception {
+	public ArrayList<Room> getListRoom(int offset, int noOfRecords) throws Exception{
 		String sql = "SELECT RoomID, RoomName, RoomSeats, Description, PriceHour, PriceFull, Status " + " FROM ( SELECT r.*, ROW_NUMBER() over (ORDER BY roomName ) as ct from  ROOM r ) "
 				+ "sub WHERE ( ct > " + offset + " AND ct <= " + noOfRecords + " ) ";
 		System.out.println(sql);
@@ -106,7 +70,9 @@ public class RoomDAO {
 			if (rs.next())
 				this.noOfRecords = rs.getInt("num");
 		}
-		catch (SQLException e) {;}
+		catch (SQLException e) {
+			throw new SQLException("Error occur: "+ e.getMessage());
+		}
 		finally {
 			try {
 				if (stmt != null)

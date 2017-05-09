@@ -3,6 +3,7 @@
  */
 package model.bo;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.bean.Room;
@@ -24,15 +25,6 @@ import model.dao.RoomDAO;
  */
 public class RoomBO {
 	RoomDAO roomDAO = new RoomDAO();
-	/**
-	 * Ham lay danh sach tat ca cac Room
-	 * 
-	 * @return roomDAO.getListRoom()
-	 * @throws Exception 
-	 */
-	public ArrayList<Room> getListRoom() throws Exception {
-		return roomDAO.getListRoom();
-	}
 
 	/**
 	 * Ham lay danh sach Room tu offset den noOfrecords
