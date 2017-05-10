@@ -186,7 +186,7 @@ public class ValidateData {
 	 * @return boolean
 	 */
 	public static boolean isSpecialCharactersNumber(int n) {
-		return (n>0)?false:true;
+		return (n==0)?true:false;
 	}
 	
 	/**
@@ -197,6 +197,6 @@ public class ValidateData {
 	 * @return boolean
 	 */
 	public static boolean isSpecialCharactersFloat(float n) {
-		return (n>0)?false:true;
+		return (n==0)?true:false;
 	}
 }

@@ -71,7 +71,7 @@
 							<td>Description</td>
 							<td>PriceHour</td>
 							<td>PriceFull</td>
-							<td></td>
+							<td class="no-sort"></td>
 						</tr>
 					</thead>
 					<tbody>
@@ -135,7 +135,11 @@
 				"paging" : false,
 				"bLengthChange" : false,
 				"pagingType" : "simple_numbers",
-				"iDisplayLength": 10
+				"iDisplayLength": 10,
+				"columnDefs": [{
+			          "targets": 'no-sort',
+			          "orderable": false,
+			    }]
 			});
 	
 		});
