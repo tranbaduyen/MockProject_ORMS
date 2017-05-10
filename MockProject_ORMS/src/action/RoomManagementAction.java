@@ -16,7 +16,6 @@ import org.apache.struts.action.ActionMapping;
 import form.RoomManagementForm;
 import model.bean.Room;
 import model.bo.RoomBO;
-import model.dao.DataAccess;
 
 /**
  * RoomManagementAction.java
@@ -33,6 +32,17 @@ import model.dao.DataAccess;
  * 03-05-2017 		DuyenTB 	Create
  */
 public class RoomManagementAction extends Action {
+	
+	/**
+	 * Method execute action
+	 * 
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @return mapping.findForward()
+	 * @throws Exception
+	 */
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -45,6 +55,8 @@ public class RoomManagementAction extends Action {
 		int recordsPerPage = 10;
 		int noOfRecords = 0;
 		int noOfPages = 0;
+		int indexStart = 0;
+		int indexEnd = 0;
 		if (request.getParameter("page") != null) {
 			currentPage = Integer.parseInt(request.getParameter("page"));
 		}
@@ -54,10 +66,14 @@ public class RoomManagementAction extends Action {
 		RoomBO roomBO;
 		roomBO = new RoomBO();
 		try{
-			listRoom = roomBO.getListRoom((currentPage - 1) * recordsPerPage, recordsPerPage * currentPage);
+			indexStart = (currentPage - 1) * recordsPerPage;
+			indexEnd = recordsPerPage * currentPage;
+			listRoom = roomBO.getListRoom(indexStart, indexEnd);
 			noOfRecords = roomBO.getNoOfRecords();
 		}
 		catch (Exception e) {
+			
+			//Exeption throw -> redirect to Error page
 			return mapping.findForward("error");
 		}
 		noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
@@ -71,6 +87,8 @@ public class RoomManagementAction extends Action {
 			roomManagementForm.setCurrentPage(currentPage);
 			roomManagementForm.setNoOfPages(noOfPages);
 		} catch (NullPointerException npe) {
+			
+			//Exeption throw -> redirect to Error page
 			return mapping.findForward("error");
 		}
 

@@ -29,7 +29,7 @@
 									<li class="current-menu-item"><a href="#">Create order</a></li>
 									<li class="current-menu-item"><a href="#">Partner Management</a></li>
 									<li class="current-menu-item"><a href="#">Account Management</a></li>
-									<li class="current-menu-item"><a href="#">Room Management</a></li>
+									<li class="current-menu-item"><a href="room-list.do">Room Management</a></li>
 									<li class="current-menu-item"><a href="#">Order Management</a></li>
 									<li class="current-menu-item"><a href="#">Payment Management</a></li>
 									<li class="current-menu-item"><a href="#">Report</a></li>

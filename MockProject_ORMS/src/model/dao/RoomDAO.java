@@ -33,16 +33,17 @@ public class RoomDAO {
 	private int num = 0;
 
 	/**
-	 * Ham lay danh sach Room tu offset den noOfrecords
+	 * Ham lay danh sach Room tu indexStart den indexEnd
+	 * Method get list Room from indexStart to indexEnd
 	 * 
 	 * @param offset
 	 * @param noOfRecords
 	 * @return list
 	 * @throws Exception 
 	 */
-	public ArrayList<Room> getListRoom(int offset, int noOfRecords) throws Exception{
+	public ArrayList<Room> getListRoom(int indexStart, int indexEnd) throws Exception{
 		String sql = "SELECT RoomID, RoomName, RoomSeats, Description, PriceHour, PriceFull, Status " + " FROM ( SELECT r.*, ROW_NUMBER() over (ORDER BY roomName ) as ct from  ROOM r ) "
-				+ "sub WHERE ( ct > " + offset + " AND ct <= " + noOfRecords + " ) ";
+				+ "sub WHERE ( ct > " + indexStart + " AND ct <= " + indexEnd + " ) ";
 		System.out.println(sql);
 		ArrayList<Room> list = null;
 		list = new ArrayList<Room>();
@@ -66,6 +67,8 @@ public class RoomDAO {
 				list.add(room);
 			}
 			rs.close();
+			
+			//Get max records in database to paging
 			rs = stmt.executeQuery("select count(*) as num from ROOM");
 			if (rs.next())
 				this.noOfRecords = rs.getInt("num");
@@ -88,6 +91,7 @@ public class RoomDAO {
 
 	/**
 	 * Ham lay thong tin chi tiet cua 1 Room
+	 * Method get information detail of Room
 	 * 
 	 * @param roomID
 	 * @return room
@@ -132,6 +136,7 @@ public class RoomDAO {
 
 	/**
 	 * Ham them moi 1 Room vao database
+	 * Method add new Room into database
 	 * 
 	 * @param roomName
 	 * @param roomSeats
@@ -170,6 +175,7 @@ public class RoomDAO {
 
 	/**
 	 * Ham cap nhat thong tin 1 Room vao database
+	 * Method update information of Room into database
 	 * 
 	 * @param roomID
 	 * @param roomName
@@ -208,6 +214,7 @@ public class RoomDAO {
 
 	/**
 	 * Ham xoa 1 Room tu database
+	 * Method delte 1 Room from database
 	 * 
 	 * @param roomID
 	 * @throws Exception 
@@ -236,7 +243,8 @@ public class RoomDAO {
 	}
 
 	/**
-	 * Ham kiem tra roomName da ton tai trong database hay chua.
+	 * Ham kiem tra roomName da ton tai trong database hay chua?
+	 * Method check roomName is duplicate in database ?
 	 * 
 	 * @param roomName
 	 * @return true neu roomName ton tai, false neu roomName khong ton tai
@@ -273,6 +281,7 @@ public class RoomDAO {
 
 	/**
 	 * Ham lay noOfRecords
+	 * Method get max records in database to paging
 	 * 
 	 * @return the noOfRecords
 	 */

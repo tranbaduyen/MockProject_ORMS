@@ -7,7 +7,8 @@
 <title>500 Errors</title>
 </head>
 <body>
-	<h1>500 Errors</h1>
-	<html:link href="room-list.do" >Quay Lại Trang Chủ</html:link>
+	<h1 align="center">500 Errors</h1>
+	<h3 align="center">Have error !!!</h3>
+	<div align="center"><a href="room-list.do">Back</a></div>
 </body>
 </html>

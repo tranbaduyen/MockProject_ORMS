@@ -38,7 +38,7 @@ public class RoomForm extends ActionForm {
 	private String submit;
 	private String action;
 	private String notification;
-	private int errorFirst = 1;
+	private int errorFirst = 0;
 
 	/**
 	 * @return roomID

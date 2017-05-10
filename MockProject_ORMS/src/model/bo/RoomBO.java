@@ -3,7 +3,6 @@
  */
 package model.bo;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.bean.Room;
@@ -34,8 +33,8 @@ public class RoomBO {
 	 * @return roomDAO.getListRoom(offset, noOfRecords)
 	 * @throws Exception 
 	 */
-	public ArrayList<Room> getListRoom(int offset, int noOfRecords) throws Exception {
-		return roomDAO.getListRoom(offset, noOfRecords);
+	public ArrayList<Room> getListRoom(int indexStart, int indexEnd) throws Exception {
+		return roomDAO.getListRoom(indexStart, indexEnd);
 	}
 
 	/**

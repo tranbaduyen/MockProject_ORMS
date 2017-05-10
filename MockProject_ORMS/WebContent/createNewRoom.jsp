@@ -45,7 +45,6 @@
 		<div class="row form-group">
 			<div class="col-sm-6" >
 				<bean:define id="errorFirst" name="roomForm" property="errorFirst"></bean:define>
-				<p><bean:write name="errorFirst"/></p>
 				<html:hidden styleId="errorFirst" property="errorFirst" styleClass="form-control"></html:hidden>
 				<div class="row form-group">
 			        <label class="col-sm-3 require">RoomName</label>
@@ -76,7 +75,7 @@
 		            <label class="col-sm-3 require">PriceHour</label>
 		            <div class="col-sm-8">
 						<html:text styleId="txtPriceHour" property="priceHour" styleClass="form-control ui-dform-text" errorStyleClass="errorT"
-                errorKey="org.apache.struts.action.ERROR" tabindex="4"></html:text>
+                errorKey="org.apache.struts.action.ERROR" tabindex="4" maxlength="11"></html:text>
 						<span style="color:red;"><html:errors  property="priceHourError"/></span>
 		            	
 		            </div>
@@ -85,7 +84,7 @@
 		            <label class="col-sm-3 require">PriceFull</label>
 		            <div class="col-sm-8" >
 						<html:text styleId="txtPriceFull" property="priceFull" styleClass="form-control ui-dform-text" errorStyleClass="errorT"
-                errorKey="org.apache.struts.action.ERROR" tabindex="5"></html:text>
+                errorKey="org.apache.struts.action.ERROR" tabindex="5" maxlength="11"></html:text>
 						<span style="color:red;"><html:errors  property="priceFullError"/></span>
 		            	
 		            </div>

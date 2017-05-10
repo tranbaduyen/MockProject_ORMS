@@ -18,7 +18,7 @@ package common;
 public class ValidateData {
 
 	/**
-	 * Ham in ra mot xau, null in ra xau rong
+	 * Method print 1 string, null print ""
 	 * 
 	 * @param str
 	 * @return String
@@ -28,6 +28,13 @@ public class ValidateData {
 		return (str == null)?temp:str;
 	}
 	
+	/**
+	 * Ham chuan hoa chuoi string
+	 * Method format String
+	 * 
+	 * @param str
+	 * @return str
+	 */
 	public static String chuanHoa(String str) {
         str = str.trim();
         str = str.replaceAll("\\s+", " ");
@@ -35,7 +42,8 @@ public class ValidateData {
     }
 	
 	/**
-	 * Ham kiem tra xau rong hay khong
+	 * Ham kiem tra truong kieu string co rong hay khong ?
+	 * Method check string is empty ?
 	 * 
 	 * @param str
 	 * @return boolean
@@ -46,17 +54,21 @@ public class ValidateData {
 	}
 
 	 /**
-	  * Ham kiem tra du lieu trong
+	  * Ham kiem tra kieu int co rong hay khong ?
+	 * Method check number type is empty ?
+	 * 
 	 * @param n
-	 * @return
+	 * @return boolean
 	 */
 	public static boolean isEmpty(int n){
 		return (n==0)?true:false;
 	 }
 	/**
-	 * Ham kiem tra du lieu trong
+	 * Ham kiem tra truong kieu float co rong hay khong ?
+	 * Method check float type is empty ?
+	 * 
 	 * @param n
-	 * @return
+	 * @return boolean
 	 */
 	public static boolean isEmpty(float n) {
 		return (n==0)?true:false;
@@ -64,6 +76,7 @@ public class ValidateData {
 
 	/**
 	 * Ham kiem tra xem xau co bao gom tat ca chu so hay khong
+	 * Method check 
 	 * 
 	 * @param str
 	 * @return boolean
@@ -75,7 +88,9 @@ public class ValidateData {
 	}
 
 	 /**
-	  * Ham kiem tra kieu Int
+	 * Ham kiem tra co phai la kieu Int hay khong ?
+	 * Method check is number ?
+	 * 
 	 * @param s
 	 * @return
 	 */
@@ -84,7 +99,9 @@ public class ValidateData {
 	 }
 	
 	/**
-	 * Ham kiem tra kieu Float
+	 * Ham kiem tra co phai la kieu Float hay khong ?
+	 * Method check is float ?
+	 * 
 	 * @param s
 	 * @return
 	 */
@@ -94,49 +111,81 @@ public class ValidateData {
 
 	/**
 	 * Ham kiem tra so ghe > 500
-	 * @param n
-	 * @return
+	 * Method check RoomSeats > 500 ?
+	 * 
+	 * @param roomSeats
+	 * @return boolean
 	 */
-	public static boolean isMoreThan500Seats(int n) {
-		return (n > 500)?true:false;
+	public static boolean isMoreThan500Seats(int roomSeats) {
+		return (roomSeats > 500)?true:false;
 	}
 
 	/**
-	 *  Ham kiem tra so am (int)
+	 *  Ham kiem tra so am (int) hay khong ?
+	 *  Method check number is negative value?
+	 *  
 	 * @param n
-	 * @return
+	 * @return boolean
 	 */
 	public static boolean isNegative(int n) {
 		return (n < 0)?true:false;
 	}
 
 	/**
-	 * Ham kiem tra so am (float)
+	 * Ham kiem tra so am (float) hay khong ?
+	 * Method check float is negative value?
+	 * 
 	 * @param n
-	 * @return
+	 * @return boolean
 	 */
 	public static boolean isNegative(float n) {
 		return (n < 0)?true:false;
 	}
 	
 	/**
-	 * Ham kiem tra xau co do dai lon hon 20 ki tu
+	 * Ham kiem tra xau co do dai lon hon 50 ki tu khong ?
+	 * Method check string have maxlength > 50 ?
+	 * 
 	 * @param str
 	 * @return boolean
 	 */
 	public static boolean isMaxlength50String(String str) {
-		if(str.length() >=50) return true;
-		return false;
+		str = chuanHoa(str);
+		return (str.length() >=50)?true:false;
 	}
 	
 	/**
-	 * Ham kiem tra xau co ki tu dac biet hay khong
+	 * Ham kiem tra xau co ki tu dac biet hay khong ?
+	 * Method check string use special characters ?
+	 * 
 	 * @param str
-	 * @return
+	 * @return boolean
 	 */
 	public static boolean isSpecialCharacters(String str) {
 		str = chuanHoa(str);
 		String regex = ("[0-9a-zA-Z\\s]*");
 		return (str.matches(regex))?false:true;
+	}
+	
+	/**
+	 * Ham kiem tra input co ki tu dac biet hay khong ?
+	 * Method check input use special characters ?
+	 * 
+	 * @param n
+	 * @return boolean
+	 */
+	public static boolean isSpecialCharactersNumber(int n) {
+		return (n>0)?false:true;
+	}
+	
+	/**
+	 * Ham kiem tra input co ki tu dac biet hay khong ?
+	 * Method check input use special characters ?
+	 * 
+	 * @param n
+	 * @return boolean
+	 */
+	public static boolean isSpecialCharactersFloat(float n) {
+		return (n>0)?false:true;
 	}
 }

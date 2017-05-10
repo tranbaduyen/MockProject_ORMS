@@ -30,6 +30,17 @@ import model.dao.DataAccess;
  * 03-05-2017 		DuyenTB 	Create
  */
 public class DeleteRoomAction extends Action {
+	
+	/**
+	 * Method execute action
+	 * 
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @return mapping.findForward()
+	 * @throws Exception
+	 */
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
