@@ -30,7 +30,7 @@ bottom: 0;
 left: 10%;
 }
 .lblError::before{
-	content:'(*) ';
+	content:' (*) ';
 }
 .lblError{
 	

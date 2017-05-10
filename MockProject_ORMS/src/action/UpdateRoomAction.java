@@ -58,117 +58,152 @@ public class UpdateRoomAction extends Action {
 			ActionErrors actionErrors = new ActionErrors();
 
 			roomForm.setErrorFirst(0);
-
-			// check RoomName not input
+			
+			//check RoomName not input
 			if (ValidateData.isEmpty(roomForm.getRoomName())) {
 				actionErrors.add("roomNameError", new ActionMessage("error.roomName.trong"));
 				roomForm.setErrorFirst(1);
 			}
-
-			// check RoomName is duplicate in database
+			
+			//check RoomName is duplicate in database
 			if (roomBO.isDuplicateRoomName(roomForm.getRoomName())) {
 				actionErrors.add("roomNameError", new ActionMessage("error.roomName.trung"));
 				roomForm.setErrorFirst(1);
 			}
-
-			// check RoomName input all number
+			
+			//check RoomName input all number
 			if (ValidateData.isAllNumber(roomForm.getRoomName())) {
 				actionErrors.add("roomNameError", new ActionMessage("error.roomName.so"));
 				roomForm.setErrorFirst(1);
 			}
-
-			// check RoomName input maxlength >50
+			
+			//check RoomName input maxlength >50
 			if (ValidateData.isMaxlength50String(roomForm.getRoomName())) {
 				actionErrors.add("roomNameError", new ActionMessage("error.roomName.maxlength"));
 				roomForm.setErrorFirst(1);
 			}
-
-			// check RoomName use special characters
+			
+			//check RoomName use special characters
 			if (ValidateData.isSpecialCharacters(roomForm.getRoomName())) {
 				actionErrors.add("roomNameError", new ActionMessage("error.roomName.kituDB"));
 				roomForm.setErrorFirst(1);
 			}
-
-			// check RoomSeats not input
+			
+			//check RoomSeats not input
 			if (ValidateData.isEmpty(roomForm.getRoomSeats())) {
 				actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.trong"));
 				if (roomForm.getErrorFirst() == 0)
 					roomForm.setErrorFirst(2);
 			}
-
-			// check RoomSeats input character different Number type
+			
+			//check RoomSeats input character different Number type
 			if (!ValidateData.isNumberOnly(roomForm.getRoomSeats())) {
 				actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.chuoi"));
 				if (roomForm.getErrorFirst() == 0)
 					roomForm.setErrorFirst(2);
 			}
-
-			// check RoomSeats input negative value
+			
+			//check RoomSeats use special characters
+			if (ValidateData.isSpecialCharactersNumber(roomForm.getRoomSeats())) {
+				actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.kituDB"));
+				if (roomForm.getErrorFirst() == 0)
+					roomForm.setErrorFirst(2);
+			}
+			
+			//check RoomSeats input negative value
 			if (ValidateData.isNegative(roomForm.getRoomSeats())) {
 				actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.negative"));
 				if (roomForm.getErrorFirst() == 0)
 					roomForm.setErrorFirst(2);
 			}
-
-			// check RoomSeats input > 500 seats
+			
+			//check RoomSeats input > 500 seats
 			if (ValidateData.isMoreThan500Seats(roomForm.getRoomSeats())) {
 				actionErrors.add("roomSeatsError", new ActionMessage("error.roomSeats.more500Seats"));
 				if (roomForm.getErrorFirst() == 0)
 					roomForm.setErrorFirst(2);
 			}
-
-			// check Description not input
+			
+			//check Description not input
 			if (ValidateData.isEmpty(roomForm.getDescription())) {
 				actionErrors.add("descriptionError", new ActionMessage("error.description.trong"));
 				if (roomForm.getErrorFirst() == 0)
 					roomForm.setErrorFirst(3);
 			}
-
-			// check Description use special characters
+			
+			//check Description use special characters 
 			if (ValidateData.isSpecialCharacters(roomForm.getDescription())) {
 				actionErrors.add("descriptionError", new ActionMessage("error.description.kituDB"));
 				if (roomForm.getErrorFirst() == 0)
 					roomForm.setErrorFirst(3);
 			}
-
-			// check PriceHour not input
+			
+			//check PriceHour not input
 			if (ValidateData.isEmpty(roomForm.getPriceHour())) {
 				actionErrors.add("priceHourError", new ActionMessage("error.priceHour.trong"));
 				if (roomForm.getErrorFirst() == 0)
 					roomForm.setErrorFirst(4);
 			}
-
-			// check PriceHour input character different Float type
+			
+			//check PriceHour input character different Float type
 			if (!ValidateData.isFloatNumber(roomForm.getPriceHour())) {
 				actionErrors.add("priceHourError", new ActionMessage("error.priceHour.chuoi"));
 				if (roomForm.getErrorFirst() == 0)
 					roomForm.setErrorFirst(4);
 			}
-
-			// check PriceHour input negative value
+			
+			//check PriceHour use special characters
+			if (ValidateData.isSpecialCharactersFloat(roomForm.getPriceHour())) {
+				actionErrors.add("priceHourError", new ActionMessage("error.priceHour.kituDB"));
+				if (roomForm.getErrorFirst() == 0)
+					roomForm.setErrorFirst(4);
+			}
+			
+			//check PriceHour input negative value
 			if (ValidateData.isNegative(roomForm.getPriceHour())) {
 				actionErrors.add("priceHourError", new ActionMessage("error.priceHour.negative"));
 				if (roomForm.getErrorFirst() == 0)
 					roomForm.setErrorFirst(4);
 			}
-
-			// check PriceFull not input
+			
+			//check PriceHour input max value
+			if (ValidateData.isMaxValue(roomForm.getPriceHour())) {
+				actionErrors.add("priceHourError", new ActionMessage("error.priceHour.maxValue"));
+				if (roomForm.getErrorFirst() == 0)
+					roomForm.setErrorFirst(4);
+			}
+			
+			//check PriceFull not input
 			if (ValidateData.isEmpty(roomForm.getPriceFull())) {
 				actionErrors.add("priceFullError", new ActionMessage("error.priceFull.trong"));
 				if (roomForm.getErrorFirst() == 0)
 					roomForm.setErrorFirst(5);
 			}
-
-			// check PriceFull input character different Float type
+			
+			//check PriceFull input character different Float type
 			if (!ValidateData.isFloatNumber(roomForm.getPriceFull())) {
 				actionErrors.add("priceFullError", new ActionMessage("error.priceFull.chuoi"));
 				if (roomForm.getErrorFirst() == 0)
 					roomForm.setErrorFirst(5);
 			}
-
-			// check PriceFull input negative value
+			
+			//check PriceFull use special characters
+			if (ValidateData.isSpecialCharactersFloat(roomForm.getPriceFull())) {
+				actionErrors.add("priceFullError", new ActionMessage("error.priceFull.kituDB"));
+				if (roomForm.getErrorFirst() == 0)
+					roomForm.setErrorFirst(5);
+			}
+			
+			//check PriceFull input negative value
 			if (ValidateData.isNegative(roomForm.getPriceFull())) {
 				actionErrors.add("priceFullError", new ActionMessage("error.priceFull.negative"));
+				if (roomForm.getErrorFirst() == 0)
+					roomForm.setErrorFirst(5);
+			}
+			
+			//check PriceFull input max value
+			if (ValidateData.isMaxValue(roomForm.getPriceFull())) {
+				actionErrors.add("priceFullError", new ActionMessage("error.priceFull.maxValue"));
 				if (roomForm.getErrorFirst() == 0)
 					roomForm.setErrorFirst(5);
 			}
@@ -177,7 +212,7 @@ public class UpdateRoomAction extends Action {
 			
 			//if error > 1 -> show error message
 			if (actionErrors.size() > 0) {
-				return mapping.findForward("createError");
+				return mapping.findForward("updateError");
 			}
 		}
 		
@@ -191,6 +226,8 @@ public class UpdateRoomAction extends Action {
 			float priceFull = roomForm.getPriceFull();
 			int status = 0;
 			try {
+				ValidateData.chuanHoa(roomName);
+				ValidateData.chuanHoa(description);
 				
 				//Validate OK -> execute addRoom() method
 				roomBO.updateRoom(roomID, roomName, roomSeats, description, priceHour, priceFull, status);

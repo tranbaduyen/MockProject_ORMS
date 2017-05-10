@@ -166,6 +166,13 @@ public class CreateNewRoomAction extends Action {
 					roomForm.setErrorFirst(4);
 			}
 			
+			//check PriceHour input max value
+			if (ValidateData.isMaxValue(roomForm.getPriceHour())) {
+				actionErrors.add("priceHourError", new ActionMessage("error.priceHour.maxValue"));
+				if (roomForm.getErrorFirst() == 0)
+					roomForm.setErrorFirst(4);
+			}
+			
 			//check PriceFull not input
 			if (ValidateData.isEmpty(roomForm.getPriceFull())) {
 				actionErrors.add("priceFullError", new ActionMessage("error.priceFull.trong"));
@@ -190,6 +197,13 @@ public class CreateNewRoomAction extends Action {
 			//check PriceFull input negative value
 			if (ValidateData.isNegative(roomForm.getPriceFull())) {
 				actionErrors.add("priceFullError", new ActionMessage("error.priceFull.negative"));
+				if (roomForm.getErrorFirst() == 0)
+					roomForm.setErrorFirst(5);
+			}
+			
+			//check PriceFull input max value
+			if (ValidateData.isMaxValue(roomForm.getPriceFull())) {
+				actionErrors.add("priceFullError", new ActionMessage("error.priceFull.maxValue"));
 				if (roomForm.getErrorFirst() == 0)
 					roomForm.setErrorFirst(5);
 			}

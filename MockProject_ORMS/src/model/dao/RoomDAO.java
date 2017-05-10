@@ -42,7 +42,7 @@ public class RoomDAO {
 	 * @throws Exception 
 	 */
 	public ArrayList<Room> getListRoom(int indexStart, int indexEnd) throws Exception{
-		String sql = "SELECT RoomID, RoomName, RoomSeats, Description, PriceHour, PriceFull, Status " + " FROM ( SELECT r.*, ROW_NUMBER() over (ORDER BY roomName ) as ct from  ROOM r ) "
+		String sql = "SELECT RoomID, RoomName, RoomSeats, Description, PriceHour, PriceFull, Status " + " FROM ( SELECT r.*, ROW_NUMBER() over (ORDER BY roomName ASC ) as ct from  ROOM r ) "
 				+ "sub WHERE ( ct > " + indexStart + " AND ct <= " + indexEnd + " ) ";
 		System.out.println(sql);
 		ArrayList<Room> list = null;

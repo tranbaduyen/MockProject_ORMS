@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>EditRoom</title>
+    <title>Edit Room</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="css/Validation.css"/>
@@ -44,6 +44,8 @@
 	<html:form styleId="updateForm" action="/update-room.do" method="post" style="background-color:#f1ddcb;">
 		<div class="row form-group">
 		<div class="col-sm-6" >
+			<bean:define id="errorFirst" name="roomForm" property="errorFirst"></bean:define>
+			<html:hidden styleId="errorFirst" property="errorFirst" styleClass="form-control"></html:hidden>
 			<html:hidden property="roomID" styleClass="form-control"></html:hidden>
 			<div class="row form-group">
 			    <label class="col-sm-3 require">RoomName</label>
@@ -107,7 +109,28 @@
 </body>
 <script >
 $(function() {
-	  $("#txtRoomName").focus();
+	$("#txtRoomName").focus();
+	  var errorFirst = ${errorFirst};
+	  switch (errorFirst) {
+		case 1:
+			break;
+		case 2:
+			$("#txtRoomName").blur();
+			$("#txtRoomSeats").focus();
+			break;
+		case 3:
+			$("#txtRoomName").blur();
+			$("#txtDescription").focus();
+			break;
+		case 4:
+			$("#txtRoomName").blur();
+			$("#txtPriceHour").focus();
+			break;
+		case 5:
+			$("#txtRoomName").blur();
+			$("#txtPriceFull").focus();
+			break;
+		}
 });
 </script>
 <script>

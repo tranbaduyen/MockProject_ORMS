@@ -8,7 +8,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>RoomManagement</title>
+		<title>Room Management</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link href="css/dataTables.bootstrap.css" rel="stylesheet">
 		<link href="css/dataTables.responsive.css" rel="stylesheet">
@@ -54,7 +54,7 @@
 							<button type="button" class="btn btn-info">Export to Excel</button>
 						</td>
 						<td style="float:right;margin: 10px 0px 10px 480px;">
-							<html:link styleClass="btn btn-danger" action="/create-room">Add a New Room</html:link>
+							<html:link styleClass="btn btn-danger" action="/create-room">Add New Record</html:link>
 						</td>
 					</tr>
 				</table>

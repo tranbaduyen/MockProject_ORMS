@@ -168,6 +168,17 @@ public class ValidateData {
 	}
 	
 	/**
+	 * Ham kiem tra so ghe > 500
+	 * Method check RoomSeats > 500 ?
+	 * 
+	 * @param roomSeats
+	 * @return boolean
+	 */
+	public static boolean isMaxValue(float price) {
+		return (price >= 999999999)?true:false;
+	}
+	
+	/**
 	 * Ham kiem tra input co ki tu dac biet hay khong ?
 	 * Method check input use special characters ?
 	 * 
