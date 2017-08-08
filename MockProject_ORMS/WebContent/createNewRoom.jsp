@@ -46,49 +46,46 @@
 			<div class="col-sm-6" >
 				<bean:define id="errorFirst" name="roomForm" property="errorFirst"></bean:define>
 				<html:hidden styleId="errorFirst" property="errorFirst" styleClass="form-control"></html:hidden>
-				<div class="row form-group">
-			        <label class="col-sm-3 require">RoomName</label>
-			        <div class="col-sm-8">
-			        	<html:text styleId="txtRoomName" property="roomName" styleClass="form-control ui-dform-text" maxlength="50" errorStyleClass="errorT"
-                errorKey="org.apache.struts.action.ERROR" tabindex="1" onfocus="" ></html:text>
-			        	<span style="color:red;" ><html:errors property="roomNameError" /></span>
-			        </div>
-		        </div>
-		        <div class="row form-group ">
-		            <label class="col-sm-3 require">RoomSeats</label>
-		            <div class="col-sm-8">
-						<html:text styleId="txtRoomSeats" property="roomSeats" styleClass="form-control ui-dform-text" errorStyleClass="errorT"
-                errorKey="org.apache.struts.action.ERROR" tabindex="2" maxlength="4">
-						</html:text><span style="color:red;"><html:errors  property="roomSeatsError"/></span>
-		            </div>
-		        </div>
-		        <div class="row form-group">
-		            <label class="col-sm-3 require">Description</label>
-		            <div class="col-sm-8">
-		            	<html:textarea styleId="txtDescription" property="description" styleClass="form-control ui-dform-text" rows="2" errorStyleClass="errorT"
-                errorKey="org.apache.struts.action.ERROR" tabindex="3" ></html:textarea>
-		            	<span style="color:red;"><html:errors  property="descriptionError"/></span>
-		            	
-		            </div>	            
-		        </div>
-		        <div class="row form-group">
-		            <label class="col-sm-3 require">PriceHour</label>
-		            <div class="col-sm-8">
-						<html:text styleId="txtPriceHour" property="priceHour" styleClass="form-control ui-dform-text" errorStyleClass="errorT"
-                errorKey="org.apache.struts.action.ERROR" tabindex="4" maxlength="11"></html:text>
-						<span style="color:red;"><html:errors  property="priceHourError"/></span>
-		            	
-		            </div>
-		        </div>
-				<div class="row form-group">
-		            <label class="col-sm-3 require">PriceFull</label>
-		            <div class="col-sm-8" >
-						<html:text styleId="txtPriceFull" property="priceFull" styleClass="form-control ui-dform-text" errorStyleClass="errorT"
-                errorKey="org.apache.struts.action.ERROR" tabindex="5" maxlength="11"></html:text>
-						<span style="color:red;"><html:errors  property="priceFullError"/></span>
-		            	
-		            </div>
-		        </div>
+		        <table id="table-products">
+		        <tbody>
+		        	<tr>
+		        		<td>
+		        			<html:text styleId="txtRoomName" property="roomName" styleClass="form-control ui-dform-text" maxlength="50" tabindex="1" onfocus="" ></html:text>
+		        		</td>
+		        		<td>
+		        			<html:text styleId="txtRoomSeats" property="roomSeats" styleClass="form-control ui-dform-text" tabindex="2" maxlength="4">
+						</html:text>
+		        		</td>
+		        		<td>
+		        			<html:textarea styleId="txtDescription" property="description" styleClass="form-control ui-dform-text" rows="2" tabindex="3" ></html:textarea>
+		        		</td>
+		        		<td>
+		        			<html:text styleId="txtPriceHour" property="priceHour" styleClass="form-control ui-dform-text"  tabindex="4" maxlength="11"></html:text>
+		        		</td>
+		        		<td>
+		        			<html:text styleId="txtPriceFull" property="priceFull" styleClass="form-control ui-dform-text"  tabindex="5" maxlength="11"></html:text>
+		        		</td>	
+		        	</tr>
+		        	<tr>
+		        		<td>
+		        			<html:text styleId="txtRoomName" property="roomName" styleClass="form-control ui-dform-text" maxlength="50" tabindex="1" onfocus="" ></html:text>
+		        		</td>
+		        		<td>
+		        			<html:text styleId="txtRoomSeats" property="roomSeats" styleClass="form-control ui-dform-text" tabindex="2" maxlength="4">
+						</html:text>
+		        		</td>
+		        		<td>
+		        			<html:textarea styleId="txtDescription" property="description" styleClass="form-control ui-dform-text" rows="2" tabindex="3" ></html:textarea>
+		        		</td>
+		        		<td>
+		        			<html:text styleId="txtPriceHour" property="priceHour" styleClass="form-control ui-dform-text"  tabindex="4" maxlength="11"></html:text>
+		        		</td>
+		        		<td>
+		        			<html:text styleId="txtPriceFull" property="priceFull" styleClass="form-control ui-dform-text"  tabindex="5" maxlength="11"></html:text>
+		        		</td>	
+		        	</tr>
+		        </tbody>
+		        </table>
 			</div>	
 		</div>                
         <div class="row form-group" style="margin-top:10px;">
@@ -110,6 +107,44 @@
     <br>
 </div>
 </body>
+<script>
+$('#btnSubmit').click(function () {
+	var rowCount = $('#table-products >tbody tr').length;
+	if(rowCount == 0){
+		alert("Giỏ hàng trống");
+			return false;	
+		}else{
+			alert("rowCount:"+rowCount);
+			for(i=1; i <= rowCount; i++){
+			 	var roomName = $(this).closest('tr').find('td:eq(0)').find('input').val()
+			 	alert(roomName);
+                var roomSeats = $("table").find("tr").eq(i).find("td").find("input").eq(1).val();
+                var roomSeats = $("table").find("tr").eq(i).find("td").find("input").eq(2).val();
+                var priceHour = $("table").find("tr").eq(i).find("td").find("input").eq(3).val();
+                var priceFull = $("table").find("tr").eq(i).find("td").find("input").eq(4).val();
+		
+				alert("roomName:"+roomName + ",roomSeats: " + roomSeats + ",description:" + description +",priceHour:"+ priceHour +",priceFull:"+ priceFull);
+				doAjaxPost(roomName, roomSeats, description, priceHour, priceFull);
+			}      
+		}
+});
+function doAjaxPost(roomName, roomSeats, description, priceHour, priceFull) {
+ 	alert(roomName);
+    $.ajax({
+        type: "POST",
+        url: "ajaxCreateNewRoom.do",
+        data: {roomName: roomName, roomSeats: roomSeats, description: description, priceHour: priceHour, priceFull: priceFull},
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(response){  
+          
+        },
+        error: function(e){
+            alert('Error: ' + e);
+        }
+    });
+} 
+</script>
 <script >
 $(function() {
 	  $("#txtRoomName").focus();

@@ -5,6 +5,7 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 	<form-beans>
 		<form-bean name="roomManagementForm" type="form.RoomManagementForm"></form-bean>
 		<form-bean name="roomForm" type="form.RoomForm"></form-bean>
+		<form-bean name="ajaxCreateNewRoomForm" type="form.AjaxCreateNewRoomForm" />
 	</form-beans>
 	<action-mappings>
 		
@@ -32,6 +33,9 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 			<forward name="error" path="/error500.jsp" />
 			<forward name="delete" path="/viewAllRoom.jsp" />
 			<forward name="deleteSuccess" path="/room-list.do"  />
+		</action>
+		<action name="ajaxCreateNewRoomForm" input=""
+			path="/ajaxCreateNewRoom" scope="request" type="action.AjaxCreateNewRoomAction">
 		</action>
 	</action-mappings>
 	<message-resources parameter="action.ApplicationResources" />
